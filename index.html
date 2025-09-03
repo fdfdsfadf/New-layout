@@ -133,7 +133,7 @@
 </a>
 
   <a href="#" id="musicToggle" title="Play music">
-    <i class="fas fa-music"></i>
+    <img src="assets/img/music-on.png" alt="Music Toggle" id="musicIcon" class="icon-img" />
     </a>
 </div>
 
@@ -236,28 +236,38 @@ setInterval(() => {
 }, 1000);
 </script>
 
-  <script>
-function toggleMusicPlayer() {
+<script>
+function toggleMusic() {
+  const music = document.getElementById('backgroundMusic');
+  const icon = document.getElementById('musicIcon');
+
+  if (music.paused) {
+    music.play();
+    icon.src = 'assets/img/music-on.png';
+  } else {
+    music.pause();
+    icon.src = 'assets/img/music-off.png';
+  }
+}
+</script>
+
+<script>
+ function toggleMusicPlayer() {
   const player = document.getElementById("musicPlayer");
   const audio = document.getElementById("bgAudio");
-  const musicBtn = document.querySelector(".fa-music").parentElement;
+  const icon = document.getElementById("musicIcon");
 
   if (player.style.display === "none") {
     player.style.display = "block";
     audio.play();
-    musicBtn.classList.add("active");
+    icon.src = "assets/img/music-off.png";
   } else {
     player.style.display = "none";
     audio.pause();
-    musicBtn.classList.remove("active");
+    icon.src = "assets/img/music-on.png";
   }
 }
-// Hi? why are you reading this? eh this is a watermark for macbooksuck so ok bye!
-document.getElementById("musicToggle").addEventListener("click", function(e) {
-  e.preventDefault();
-  toggleMusicPlayer();
-});
-  </script>
+</script>
 
 <div class="settings-container">
   <button class="settings-toggle" onclick="toggleSettings()">⚙️</button>
@@ -347,7 +357,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                                 <img src="assets/img/discord.png" alt="Discord" class="icon-img">
                             </a>
                             <a href="#" onclick="toggleMusicPlayer()" title="Toggle Music">
-                                <i class="fas fa-music"></i>
+                                <img src="assets/img/music-on.png" alt="Music Toggle" id="musicIcon" class="icon-img" />
                             </a>
                         </div>
                     </div>
