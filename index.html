@@ -1554,13 +1554,13 @@ function applySettings() {
     localStorage.setItem('customFavicon', newFavicon);
   }
 
-  toggleSettings();
+  // No toggleSettings() here — panel stays open
 }
 
 function resetSettings() {
   localStorage.removeItem('customTitle');
   localStorage.removeItem('customFavicon');
-  location.reload();
+  location.reload(); // Refreshes page, but doesn’t hide panel before reload
 }
 
 window.addEventListener('load', () => {
