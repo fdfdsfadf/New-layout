@@ -262,26 +262,24 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
 </script>
 
 
-<div class="settings-container">
-  <button class="settings-toggle" onclick="toggleSettings()">⚙️</button>
+<div class="settings-dropdown" id="settingsDropdown">
+  <label>
+    Tab Title:
+    <input type="text" id="titleInput" placeholder="Enter new tab title" />
+  </label>
+  <label>
+    Tab Icon URL:
+    <input type="text" id="faviconInput" placeholder="Enter favicon image URL" />
+  </label>
 
-  <div class="settings-dropdown" id="settingsDropdown">
-    <label>
-      Tab Title:
-      <input type="text" id="titleInput" placeholder="Enter new tab title" />
-    </label>
-    <label>
-      Tab Icon URL:
-      <input type="text" id="faviconInput" placeholder="Enter favicon image URL" />
-    </label>
-
-    <div class="settings-actions">
-      <button onclick="resetSettings()">Reset</button>
-    </div>
-
-    <button onclick="applySettings()" class="apply-btn">Apply</button>
+  <div class="settings-actions">
+    <button onclick="resetSettings()">Reset</button>
+    <!-- Future button can go here -->
   </div>
+
+  <button onclick="applySettings()" class="apply-btn">Apply</button>
 </div>
+
 
     
     <div class="app">
