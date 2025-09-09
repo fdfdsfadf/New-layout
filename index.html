@@ -275,6 +275,14 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
       Tab Icon URL:
       <input type="text" id="faviconInput" placeholder="Enter favicon image URL" />
     </label>
+    <label>
+      Idle Timer (minutes):
+      <input type="number" id="idleTimeInput" placeholder="e.g. 20" min="1" />
+    </label>
+    <label>
+      Idle Image URL:
+      <input type="text" id="idleImageInput" placeholder="Enter image URL for idle overlay" />
+    </label>
 
     <div class="settings-actions">
       <button class="reset-btn" onclick="resetSettings()">Reset</button>
@@ -1524,6 +1532,8 @@ document.querySelector('.search-input').addEventListener('input', function(e) {
 });
 </script>
 <script>
+let idleDuration = 20 * 60 * 1000; // default 20 minutes
+
 function toggleSettings() {
   const dropdown = document.getElementById('settingsDropdown');
   dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -1532,6 +1542,8 @@ function toggleSettings() {
 function applySettings() {
   const newTitle = document.getElementById('titleInput').value;
   const newFavicon = document.getElementById('faviconInput').value;
+  const idleTime = document.getElementById('idleTimeInput').value;
+  const idleImage = document.getElementById('idleImageInput').value;
 
   if (newTitle) {
     document.title = newTitle;
@@ -1549,18 +1561,31 @@ function applySettings() {
     localStorage.setItem('customFavicon', newFavicon);
   }
 
-  // No toggleSettings() here — panel stays open
+  if (idleTime) {
+    localStorage.setItem('customIdleTime', idleTime);
+    idleDuration = parseInt(idleTime) * 60 * 1000;
+  }
+
+  if (idleImage) {
+    localStorage.setItem('customIdleImage', idleImage);
+    const idleOverlayImg = document.querySelector('#idleOverlay img');
+    if (idleOverlayImg) idleOverlayImg.src = idleImage;
+  }
 }
 
 function resetSettings() {
   localStorage.removeItem('customTitle');
   localStorage.removeItem('customFavicon');
-  location.reload(); // Refreshes page, but doesn’t hide panel before reload
+  localStorage.removeItem('customIdleTime');
+  localStorage.removeItem('customIdleImage');
+  location.reload();
 }
 
 window.addEventListener('load', () => {
   const savedTitle = localStorage.getItem('customTitle');
   const savedFavicon = localStorage.getItem('customFavicon');
+  const savedIdleTime = localStorage.getItem('customIdleTime');
+  const savedIdleImage = localStorage.getItem('customIdleImage');
 
   if (savedTitle) {
     document.title = savedTitle;
@@ -1576,6 +1601,17 @@ window.addEventListener('load', () => {
     }
     link.href = savedFavicon;
     document.getElementById('faviconInput').value = savedFavicon;
+  }
+
+  if (savedIdleTime) {
+    document.getElementById('idleTimeInput').value = savedIdleTime;
+    idleDuration = parseInt(savedIdleTime) * 60 * 1000;
+  }
+
+  if (savedIdleImage) {
+    document.getElementById('idleImageInput').value = savedIdleImage;
+    const idleOverlayImg = document.querySelector('#idleOverlay img');
+    if (idleOverlayImg) idleOverlayImg.src = savedIdleImage;
   }
 });
 </script>
