@@ -1614,5 +1614,16 @@ window.addEventListener('load', () => {
   }
 });
 </script>
+<script>
+function toggleSettings() {
+  const dropdown = document.getElementById("settingsDropdown");
+  // Toggle between 'block' and 'none'
+  if (dropdown.style.display === "block") {
+    dropdown.style.display = "none";
+  } else {
+    dropdown.style.display = "block";
+  }
+}
+</script>
 </body>
 </html>
