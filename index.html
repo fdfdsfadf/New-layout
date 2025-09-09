@@ -264,7 +264,8 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
   
     
 <div class="settings-dropdown" id="settingsDropdown">
-    <button class="settings-toggle" onclick="toggleSettings()">⚙️</button>
+  <button class="settings-toggle" onclick="toggleSettings()">⚙️</button>
+
   <label>
     Tab Title:
     <input type="text" id="titleInput" placeholder="Enter new tab title" />
@@ -275,12 +276,13 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
   </label>
 
   <div class="settings-actions">
-    <button onclick="resetSettings()">Reset</button>
+    <button class="reset-btn" onclick="resetSettings()">Reset</button>
     <!-- Future button can go here -->
   </div>
 
   <button onclick="applySettings()" class="apply-btn">Apply</button>
 </div>
+
 
 
     
