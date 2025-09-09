@@ -274,7 +274,12 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
       Tab Icon URL:
       <input type="text" id="faviconInput" placeholder="Enter favicon image URL" />
     </label>
-    <button onclick="applySettings()">Apply</button>
+
+    <div class="settings-actions">
+      <button onclick="resetSettings()">Reset</button>
+    </div>
+
+    <button onclick="applySettings()" class="apply-btn">Apply</button>
   </div>
 </div>
 
@@ -1530,6 +1535,7 @@ function applySettings() {
 
   if (newTitle) {
     document.title = newTitle;
+    localStorage.setItem('customTitle', newTitle);
   }
 
   if (newFavicon) {
@@ -1540,10 +1546,38 @@ function applySettings() {
       document.head.appendChild(link);
     }
     link.href = newFavicon;
+    localStorage.setItem('customFavicon', newFavicon);
   }
 
-  toggleSettings(); // hide dropdown after applying
+  toggleSettings();
 }
+
+function resetSettings() {
+  localStorage.removeItem('customTitle');
+  localStorage.removeItem('customFavicon');
+  location.reload();
+}
+
+window.addEventListener('load', () => {
+  const savedTitle = localStorage.getItem('customTitle');
+  const savedFavicon = localStorage.getItem('customFavicon');
+
+  if (savedTitle) {
+    document.title = savedTitle;
+    document.getElementById('titleInput').value = savedTitle;
+  }
+
+  if (savedFavicon) {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = savedFavicon;
+    document.getElementById('faviconInput').value = savedFavicon;
+  }
+});
 </script>
 </body>
 </html>
