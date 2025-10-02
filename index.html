@@ -350,16 +350,11 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <span class="nav-icon">🎬</span>
                             <span class="nav-label">Movie Hub</span>
                         </a>
-
-                        <a href="https://macbooksuck.xyz/games/GBA/index.html" class="sidebar-item" target="_blank">
-                            <span class="nav-icon">🎮</span>
-                            <span class="nav-label">GameBoy Adv Emulator</span>
-                        </a>
-
-                        <a href="https://macbooksuck.xyz/hd_fnaf/index.html" class="sidebar-item" target="_blank">
-                            <span class="nav-icon">🎮</span>
-                            <span class="nav-label">FNAF-Collection</span>
-                        </a>
+                        
+                        <div class="sidebar-item" onclick="showEmulators()">
+                              <span class="nav-icon">🎮</span>
+                              <span class="nav-label">Emulators</span>
+                        </div>
                         
                         <div class="sidebar-item">
                             <span class="nav-icon">🔥</span>
@@ -1472,6 +1467,23 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                         </a>
+
+                        <a href="https://macbooksuck.xyz/games/GBA/index.html" class="game-card emulator-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">GameBoy Adv Emulator</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </a>
+
+                        <a href="https://macbooksuck.xyz/hd_fnaf/index.html" class="game-card emulator-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">FNAF-Collection</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                       </a>
+
                         
                 </section>
 
@@ -1548,6 +1560,20 @@ document.querySelector('.search-input').addEventListener('input', function(e) {
     });
 });
 </script>
+<script>
+function showEmulators() {
+  // Hide all visible game cards
+  document.querySelectorAll('.game-card').forEach(card => {
+    card.style.display = 'none';
+  });
+
+  // Show only emulator cards
+  document.querySelectorAll('.emulator-card').forEach(card => {
+    card.style.display = 'block';
+  });
+}
+</script>
+
 <script>
 let idleDuration = 20 * 60 * 1000; // default 20 minutes
 
