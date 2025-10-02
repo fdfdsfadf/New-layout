@@ -1562,14 +1562,33 @@ document.querySelector('.search-input').addEventListener('input', function(e) {
 </script>
 <script>
 function showEmulators() {
-  // Hide all visible game cards
+  // Highlight Emulators, unhighlight Home
+  document.getElementById('navEmulators').classList.add('active');
+  document.getElementById('navHome').classList.remove('active');
+
+  // Hide all game cards
   document.querySelectorAll('.game-card').forEach(card => {
     card.style.display = 'none';
   });
 
-  // Show only emulator cards
+  // Show emulator cards
   document.querySelectorAll('.emulator-card').forEach(card => {
     card.style.display = 'block';
+  });
+}
+
+function showHome() {
+  // Highlight Home, unhighlight Emulators
+  document.getElementById('navHome').classList.add('active');
+  document.getElementById('navEmulators').classList.remove('active');
+
+  // Show all non-emulator cards
+  document.querySelectorAll('.game-card').forEach(card => {
+    if (!card.classList.contains('emulator-card')) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
   });
 }
 </script>
