@@ -23,6 +23,7 @@ body {
     --cg-red: #ef4444;
     --cg-purple: #a855f7;
     --cg-yellow: #FFD700;
+    --cg-pink: #FFC0CB;
     --border-color: #2d3748;
 }
 
@@ -375,6 +376,10 @@ body {
 
 .badge.not-working {
     background-color: var(--cg-red);
+}
+
+.badge.only-here {
+    background-color: var(--cg-pink);
 }
 
 .game-card > .badge {
