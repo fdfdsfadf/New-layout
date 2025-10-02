@@ -341,7 +341,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                     </div>
 
                     <nav class="sidebar-nav">
-                        <div class="sidebar-item active">
+                        <div class="sidebar-item active" id="navHome" onclick="showHome()">
                             <span class="nav-icon">🏠</span>
                             <span class="nav-label">Home</span>
                         </div>
@@ -351,7 +351,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <span class="nav-label">Movie Hub</span>
                         </a>
                         
-                        <div class="sidebar-item" onclick="showEmulators()">
+                        <div class="sidebar-item" id="navEmulators" onclick="showEmulators()">
                               <span class="nav-icon">🎮</span>
                               <span class="nav-label">Emulators</span>
                         </div>
