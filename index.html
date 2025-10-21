@@ -361,7 +361,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                               <span class="nav-label">Emulators</span>
                         </div>
 
-                        <div class="sidebar-item" id="navEmulators" onclick="showHorror()">
+                        <div class="sidebar-item" id="navHorror" onclick="showHorror()">
                               <span class="nav-icon">🎮</span>
                               <span class="nav-label">Horror games</span>
                         </div>
@@ -1509,7 +1509,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             </div>
                        </a>
                         
-                        <a href="https://99nights.macbooksuck.xyz/index.html" class="game-card emulator-card" style="display: none;">
+                        <a href="https://99nights.macbooksuck.xyz/index.html" class="game-card horror-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">99 Nights In The Forrest</div>
@@ -1617,20 +1617,39 @@ function showEmulators() {
   });
 }
 
-function showHome() {
-  // Highlight Home, unhighlight Emulators
-  document.getElementById('navHome').classList.add('active');
+function showHorror() {
+  // Highlight Horror, unhighlight others
+  document.getElementById('navHorror').classList.add('active');
+  document.getElementById('navHome').classList.remove('active');
   document.getElementById('navEmulators').classList.remove('active');
 
-  // Show all non-emulator cards
+  // Hide all game cards
   document.querySelectorAll('.game-card').forEach(card => {
-    if (!card.classList.contains('emulator-card')) {
+    card.style.display = 'none';
+  });
+
+  // Show horror cards
+  document.querySelectorAll('.horror-card').forEach(card => {
+    card.style.display = 'block';
+  });
+}
+
+
+function showHome() {
+  document.getElementById('navHome').classList.add('active');
+  document.getElementById('navEmulators').classList.remove('active');
+  document.getElementById('navHorror').classList.remove('active');
+
+  document.querySelectorAll('.game-card').forEach(card => {
+    if (!card.classList.contains('emulator-card') && !card.classList.contains('horror-card')) {
       card.style.display = 'block';
     } else {
       card.style.display = 'none';
     }
   });
 }
+
+    
 </script>
 
 <script>
