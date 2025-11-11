@@ -370,6 +370,11 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                               <span class="nav-icon">🎮</span>
                               <span class="nav-label">Horror games</span>
                         </div>
+
+                        <div class="sidebar-item" id="navNew" onclick="showNewGames()">
+                              <span class="nav-icon">🆕</span>
+                              <span class="nav-label">New Games</span>
+                        </div>
                         
                         <a href="https://ws.macbooksuck.xyz" class="sidebar-item" target="_blank">
                             <span class="nav-icon">🔨</span>
@@ -1580,6 +1585,25 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <div class="badge hot">Horror</div>
                         </a>
 
+                        <a href="https://99nights.macbooksuck.xyz/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">99 Nights In The Forrest</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                          </a>
+
+
+                        <a href="https://games.macbooksuck.xyz/games/block-blast/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Block Blast</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
                         
                 </section>
 
@@ -1648,65 +1672,73 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
   });
 });
     </script>
-    <script>
-document.querySelector('.search-input').addEventListener('input', function(e) {
-    const query = e.target.value.toLowerCase();
-    document.querySelectorAll('.game-card').forEach(card => {
-        const title = card.querySelector('.game-title')?.textContent.toLowerCase() || '';
-        card.style.display = title.includes(query) ? 'block' : 'none';
-    });
-});
-</script>
 <script>
+document.querySelector('.search-input').addEventListener('input', function(e) {
+  const query = e.target.value.toLowerCase();
+  document.querySelectorAll('.game-card').forEach(card => {
+    const title = card.querySelector('.game-title')?.textContent.toLowerCase() || '';
+    card.style.display = title.includes(query) ? 'block' : 'none';
+  });
+});
+
 function showEmulators() {
-  // Highlight Emulators, unhighlight Home
   document.getElementById('navEmulators').classList.add('active');
   document.getElementById('navHome').classList.remove('active');
+  document.getElementById('navHorror').classList.remove('active');
+  document.getElementById('navNew').classList.remove('active');
 
-  // Hide all game cards
   document.querySelectorAll('.game-card').forEach(card => {
     card.style.display = 'none';
   });
-
-  // Show emulator cards
   document.querySelectorAll('.emulator-card').forEach(card => {
     card.style.display = 'block';
   });
 }
 
 function showHorror() {
-  // Highlight Horror, unhighlight others
   document.getElementById('navHorror').classList.add('active');
   document.getElementById('navHome').classList.remove('active');
   document.getElementById('navEmulators').classList.remove('active');
+  document.getElementById('navNew').classList.remove('active');
 
-  // Hide all game cards
   document.querySelectorAll('.game-card').forEach(card => {
     card.style.display = 'none';
   });
-
-  // Show horror cards
   document.querySelectorAll('.horror-card').forEach(card => {
     card.style.display = 'block';
   });
 }
 
+function showNewGames() {
+  document.getElementById('navNew').classList.add('active');
+  document.getElementById('navHome').classList.remove('active');
+  document.getElementById('navEmulators').classList.remove('active');
+  document.getElementById('navHorror').classList.remove('active');
+
+  document.querySelectorAll('.game-card').forEach(card => {
+    card.style.display = 'none';
+  });
+  document.querySelectorAll('.new-card').forEach(card => {
+    card.style.display = 'block';
+  });
+}
 
 function showHome() {
   document.getElementById('navHome').classList.add('active');
   document.getElementById('navEmulators').classList.remove('active');
   document.getElementById('navHorror').classList.remove('active');
+  document.getElementById('navNew').classList.remove('active');
 
   document.querySelectorAll('.game-card').forEach(card => {
-    if (!card.classList.contains('emulator-card') && !card.classList.contains('horror-card')) {
+    if (!card.classList.contains('emulator-card') &&
+        !card.classList.contains('horror-card') &&
+        !card.classList.contains('new-card')) {
       card.style.display = 'block';
     } else {
       card.style.display = 'none';
     }
   });
 }
-
-    
 </script>
 
 <script>
