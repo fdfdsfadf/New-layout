@@ -659,7 +659,8 @@ body {
 .notif {
   position: fixed;
   right: 20px;
-  bottom: 24px;
+  top: 24px;
+  bottom: auto;
   width: 320px;
   max-width: calc(100% - 48px);
   background: linear-gradient(180deg,#0b1530,#06102a);
