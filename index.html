@@ -402,7 +402,19 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                         </div>
                     </div>
                 </aside>
-
+            <div id="webfarmNotification" class="notif hidden" role="status" aria-live="polite" aria-atomic="true">
+                <div class="notif-inner">
+                    <div class="notif-left">
+                        <strong class="notif-title">Update</strong>
+                        <div class="notif-message">Webfarm is now fixed.</div>
+                    </div>
+                    <div class="notif-actions">
+                        <button id="notifDetails" class="notif-btn">Details</button>
+                        <button id="notifDismiss" class="notif-btn" aria-label="Dismiss notification">✕</button>
+                    </div>
+                </div>
+            </div>
+                        
 
             <!-- Main Content -->
             <main class="main-content">
