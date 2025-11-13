@@ -2037,7 +2037,7 @@ function toggleSettings() {
 }
 </script>
 <script>
-// Notification JS - place after the notification HTML or in your main script
+// Notification JS (always shows)
 (function(){
   const notif = document.getElementById('webfarmNotification');
   const dismiss = document.getElementById('notifDismiss');
@@ -2045,12 +2045,9 @@ function toggleSettings() {
   let autoHideTimer = null;
 
   function showNotification(duration = 8000) {
-    // Add show class and remove hidden to trigger animation/aria-live
     notif.classList.remove('hidden');
-    // allow layout then add class
     requestAnimationFrame(() => notif.classList.add('show'));
 
-    // Auto-hide
     if (duration > 0) {
       clearTimeout(autoHideTimer);
       autoHideTimer = setTimeout(hideNotification, duration);
@@ -2059,30 +2056,22 @@ function toggleSettings() {
 
   function hideNotification() {
     notif.classList.remove('show');
-    // keep the element but make it inert after transition
-    setTimeout(() => {
-      notif.classList.add('hidden');
-    }, 300);
+    setTimeout(() => notif.classList.add('hidden'), 300);
     clearTimeout(autoHideTimer);
   }
 
-  // Button handlers
+  // Button actions
   dismiss.addEventListener('click', hideNotification);
   details.addEventListener('click', () => {
-    // Example: open a details panel or anchor — change to suit your site
-    window.open('/status', '_blank');
+    window.open('/status', '_blank'); // change to your desired link
   });
 
-  // Show on page load (only first time per session)
-  if (!sessionStorage.getItem('webfarmNotifSeen')) {
-    window.addEventListener('load', () => {
-      // slight delay so it doesn't clash with other scripts
-      setTimeout(() => showNotification(8000), 600);
-      sessionStorage.setItem('webfarmNotifSeen', '1');
-    });
-  }
+  // Always show on page load
+  window.addEventListener('load', () => {
+    setTimeout(() => showNotification(0), 600);
+  });
 
-  // Expose for manual triggering if needed
+  // Optional: expose for manual control
   window.showWebfarmNotification = showNotification;
   window.hideWebfarmNotification = hideNotification;
 })();
