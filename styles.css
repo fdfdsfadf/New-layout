@@ -654,3 +654,65 @@ body {
 .apply-btn:hover {
   background-color: #00c2cc;
 }
+
+/* Notification CSS - add to your styles.css or <head> */
+.notif {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  width: 320px;
+  max-width: calc(100% - 48px);
+  background: linear-gradient(180deg,#0b1530,#06102a);
+  color: #e6f7ff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  overflow: hidden;
+  z-index: 20000;
+  transform: translateY(16px) scale(0.995);
+  opacity: 0;
+  transition: transform 260ms cubic-bezier(.2,.9,.3,1), opacity 260ms;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.notif-inner {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+}
+.notif-left { display:flex; flex-direction:column; gap:6px; }
+.notif-title { font-size:14px; color:#b7f7b7; }
+.notif-message { font-size:13px; color:#dbeeff; line-height:1.15; }
+
+/* Buttons */
+.notif-actions { display:flex; gap:8px; align-items:center; }
+.notif-btn {
+  background: transparent;
+  border: none;
+  color: #cde8ff;
+  padding:6px 8px;
+  font-size:13px;
+  cursor:pointer;
+  border-radius:8px;
+}
+.notif-btn:hover { background: rgba(255,255,255,0.03); }
+
+/* Visible state */
+.notif.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Hidden state (screen-readers still announce because of aria-live on show) */
+.notif.hidden {
+  pointer-events: none;
+  display: block; /* keep element for transition; still hidden by opacity/transform */
+}
+
+/* Small view */
+@media (max-width:420px){
+  .notif { right: 12px; left: 12px; width:auto; bottom:16px; }
+  .notif-message { font-size:12px; }
+}
+
