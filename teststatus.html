@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Update Log — Status</title>
+  <link rel="icon" href="/assets/favicon/education-perfect.png" />
+  <style>
+    :root{
+      --bg:#06021b; --card:#0b1530; --muted:#bfcfe6; --accent:#8b5cf6; --accent-2:#1eff00;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:linear-gradient(180deg,var(--bg),#020017); color:var(--muted);}
+    .wrap{max-width:900px;margin:48px auto;padding:28px;background:linear-gradient(180deg,var(--card),#040428);border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,0.6);border:1px solid rgba(139,92,246,0.08)}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    h1{margin:0;font-size:28px;color:#fff;letter-spacing:0.2px}
+    .muted-small{color:#9fb0d1;font-size:13px}
+    .list{margin-top:14px}
+    .big-list{list-style:disc;margin-left:20px;margin-bottom:10px}
+    .big-list > li{margin:12px 0;font-size:16px}
+    .big-list .heading{font-weight:600;color:var(--accent-2)}
+    .nested{list-style:circle;margin-left:18px;margin-top:8px;color:#cfe7ff}
+    .note{margin-top:14px;font-size:13px;color:#98aecd}
+    a.home{
+      text-decoration:none;padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-size:14px
+    }
+    /* small responsive tweaks */
+    @media (max-width:520px){.wrap{margin:20px;padding:18px}h1{font-size:20px}}
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <header>
+      <div>
+        <h1>Update Log</h1>
+        <div class="muted-small">Latest status &amp; release notes</div>
+      </div>
+      <div>
+        <a class="home" href="/">Home</a>
+      </div>
+    </header>
+
+    <section class="list" aria-labelledby="updates-1-2">
+      <header>
+        <div>
+          <h1>Update 1.2</h1>
+          <div class="muted-small">Latest status & release notes</div>
+        </div>
+      </header>
+
+      <ul class="big-list" id="updates-1-2">
+        <li>
+          <div class="heading">Removed DOOM</div>
+          <div>There is already DOOM found in the Game Boy Advance emulator.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="list" aria-labelledby="updates">
+      <ul class="big-list" id="updates">
+        <li>
+          <div class="heading">Webfarm is fixed.</div>
+          <div>Big dot point: webfarm is fixed. The underlying issue was that the code had gotten corrupted and then I needed to redirect it to a game save.</div>
+        </li>
+
+        <li>
+          <div class="heading">Released Learn to fly 1-2 using flash</div>
+          <div>Big dot point: Released Learn to fly 1-2 using flash</div>
+        </li>
+
+        <li>
+          <div class="heading">Update</div>
+          <div>
+            <ul class="nested">
+              <li>small dot point: Fixed Billards/Pool title typo</li>
+              <li>small dot point: Removed New badge from Black Blast (Top Rated replacement badge)</li>
+              <li>small dot point: REmoved New badge from Jelly Merge (no replacement badge)</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    
+
+    <p class="note">This page was generated for your site. Drop this file at <code>/status</code> or link to it from your navigation so users can see updates.</p>
+  </main>
+</body>
+</html>
