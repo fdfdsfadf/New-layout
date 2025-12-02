@@ -31,4 +31,24 @@
     if (e.target === overlay) hide(false);
   });
   openSite.addEventListener('click', () => hide(true));
+
+  // ---------------------------------------------------------
+  //  SECRET DEVELOPER RESET: type "developer code"
+  // ---------------------------------------------------------
+  let buffer = "";
+
+  document.addEventListener("keydown", (e) => {
+    buffer += e.key.toLowerCase();
+
+    // keep only the last 20 chars so buffer doesn't grow forever
+    if (buffer.length > 20) buffer = buffer.slice(-20);
+
+    // detect secret phrase
+    if (buffer.includes("developercode")) {
+      localStorage.removeItem(KEY); // reset dismissal
+      overlay.classList.add("visible");
+      overlay.setAttribute("aria-hidden", "false");
+      alert("Developer mode: banner reset");
+    }
+  });
 })();
