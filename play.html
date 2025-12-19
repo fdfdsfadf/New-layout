@@ -9,6 +9,7 @@
         #game-container { width: 100vw; height: 90vh; }
         iframe { width: 100%; height: 100%; border: none; }
         #ui-bar { padding: 10px; display: flex; justify-content: space-between; background: #222; }
+        button { cursor: pointer; padding: 5px 10px; }
     </style>
 </head>
 <body>
@@ -16,7 +17,7 @@
 <div id="ui-bar">
     <span id="game-title">Loading...</span>
     <div>
-        <span id="user-display">Not Logged In</span>
+        <span id="user-status">Not Logged In</span>
         <button id="login-btn" onclick="signIn()">Login to Save</button>
     </div>
 </div>
@@ -26,83 +27,80 @@
 </div>
 
 <script>
-    // 1. SETUP SUPABASE
-    const supabaseUrl = 'YOUR_SUPABASE_URL_HERE';
-    const supabaseKey = 'YOUR_SUPABASE_ANON_KEY_HERE'; // It's safe to expose the ANON key
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    // --- CONFIGURATION ---
+    const supabaseUrl = 'YOUR_SUPABASE_URL_HERE'; // Get this from Project Settings -> API
+    const supabaseKey = 'YOUR_ANON_KEY_HERE';     // Get this from Project Settings -> API
+    // ---------------------
 
-    // 2. GET GAME FROM URL (e.g., play.html?g=doom)
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    const iframe = document.getElementById("game-frame");
+    let currentUser = null;
+
+    // 1. Load Game from URL (e.g. play.html?g=mario)
     const params = new URLSearchParams(window.location.search);
-    const gameName = params.get('g') || 'default-game'; 
+    const gameName = params.get('g') || 'default';
     const gamePath = `/${gameName}/`; 
     
-    // Set iframe source
-    const iframe = document.getElementById("game-frame");
+    // Point iframe to the games subdomain
+    // NOTE: This assumes games are at games.macbooksuck.xyz/gamename/
     iframe.src = `https://games.macbooksuck.xyz${gamePath}`;
     document.getElementById("game-title").innerText = "Playing: " + gameName;
 
-    // 3. AUTHENTICATION HANDLING
-    let currentUser = null;
-
+    // 2. Handle Login
     async function checkUser() {
         const { data: { user } } = await supabase.auth.getUser();
         if (user) {
             currentUser = user;
-            document.getElementById("user-display").innerText = user.email;
+            document.getElementById("user-status").innerText = user.email;
             document.getElementById("login-btn").style.display = "none";
-            loadCloudSave(); // Load save immediately on login
+            loadCloudSave(); 
         }
     }
 
     async function signIn() {
+        // You can use 'google' if you enabled it, or just use email for testing
         await supabase.auth.signInWithOAuth({ provider: 'google' });
     }
 
-    // 4. RECEIVE SAVE FROM GAME (IFRAME)
+    // 3. Listen for Saves from the Game
     window.addEventListener("message", async (event) => {
-        // Security check: Only accept from your games domain
-        if (event.origin !== "https://games.macbooksuck.xyz") return;
+        // Allow any subdomain (games., ctr., etc.)
+        if (!event.origin.endsWith("macbooksuck.xyz")) return;
 
         if (event.data.type === "GAME_SAVE" && currentUser) {
-            console.log("Saving to Cloud...", event.data.key);
+            console.log("Saving to Cloud...", event.data.gameId);
             
-            // Upsert (Update or Insert) to Supabase
-            // We store the specific Key/Value pair in the JSON
-            const { error } = await supabase
-                .from('saves')
-                .upsert({ 
-                    user_id: currentUser.id, 
-                    game_path: gamePath,
-                    save_json: { [event.data.key]: event.data.value } // Store as JSON
-                }, { onConflict: 'user_id, game_path' });
-
-            if (error) console.error("Save Failed:", error);
+            await supabase.from('saves').upsert({ 
+                user_id: currentUser.id, 
+                game_path: event.data.gameId,
+                save_json: { [event.data.key]: event.data.value }
+            }, { onConflict: 'user_id, game_path' });
         }
     });
 
-    // 5. SEND SAVE DOWN TO GAME
+    // 4. Send Save DOWN to Game
     async function loadCloudSave() {
         if (!currentUser) return;
-        
-        const { data, error } = await supabase
+
+        // We search by the game ID that the game reports
+        // (For now we guess it is domain + path, but we can query loosely)
+        const { data } = await supabase
             .from('saves')
             .select('save_json')
             .eq('user_id', currentUser.id)
-            .eq('game_path', gamePath)
-            .single();
+            .ilike('game_path', `%${gamePath}%`) // Flexible match
+            .maybeSingle();
 
         if (data && data.save_json) {
             console.log("Found Save, sending to game...");
             iframe.contentWindow.postMessage({
                 type: "LOAD_SAVE",
                 payload: data.save_json
-            }, "https://games.macbooksuck.xyz");
+            }, "*");
         }
     }
 
-    // Initialize
     checkUser();
-
 </script>
 </body>
 </html>
