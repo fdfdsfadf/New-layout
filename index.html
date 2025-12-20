@@ -1861,6 +1861,133 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
             </main>
         </div>
     </div>
+
+    <div id="game-modal" class="modal-overlay">
+    <div class="game-window" id="game-window-box">
+        
+        <div class="window-bar">
+            <div id="save-indicator" class="save-status">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                Cloud Save Active
+            </div>
+            
+            <div class="window-controls">
+                <button class="btn-control" onclick="toggleFullscreen()">
+                    <i class="fa-solid fa-expand"></i> Fullscreen
+                </button>
+                <button class="btn-control btn-close" onclick="closeGame()">
+                    <i class="fa-solid fa-xmark"></i> Close
+                </button>
+            </div>
+        </div>
+
+        <div class="iframe-container">
+            <iframe id="game-frame" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    // 1. CONFIGURATION
+    const supabaseUrl = 'https://ahkqnnvrmpvvwudyjrin.supabase.co';
+    const supabaseKey = 'sb_publishable_Y8MVDWUNrev1SXAZ8-vJhA_ZDmqDwgi'; // PASTE THE FULL KEY HERE
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    // 2. DOM ELEMENTS
+    const modal = document.getElementById('game-modal');
+    const gameWindow = document.getElementById('game-window-box');
+    const iframe = document.getElementById('game-frame');
+    const saveIndicator = document.getElementById('save-indicator');
+    let currentUser = null;
+
+    // 3. AUTH & INIT
+    async function initAuth() {
+        const { data: { user } } = await supabase.auth.getUser();
+        currentUser = user;
+        updateUI();
+    }
+    
+    function updateUI() {
+        if (currentUser) {
+            saveIndicator.style.opacity = "1";
+            saveIndicator.innerHTML = '<i class="fa-solid fa-check-circle"></i> This game is saved with the login feature';
+        } else {
+            saveIndicator.style.opacity = "1";
+            saveIndicator.style.color = "var(--cg-orange)";
+            saveIndicator.innerHTML = '<span style="cursor:pointer" onclick="signIn()">⚠️ Not Logged In (Click to Login)</span>';
+        }
+    }
+
+    async function signIn() {
+        await supabase.auth.signInWithOAuth({ provider: 'google' });
+    }
+
+    initAuth();
+
+    // 4. OPEN/CLOSE GAME
+    // This function is called by your game cards
+    window.openGame = function(gamePath) {
+        modal.classList.add('active'); // Show modal with animation
+        
+        // Construct URL: games.macbooksuck.xyz + /games/name
+        // Ensure gamePath input is like 'games/bit-planes-2'
+        iframe.src = `https://games.macbooksuck.xyz/${gamePath}/`;
+
+        if (currentUser) {
+            // Give iframe a moment to load, then check for saves
+            setTimeout(() => loadCloudSave(gamePath), 1000);
+        }
+    };
+
+    window.closeGame = function() {
+        modal.classList.remove('active');
+        setTimeout(() => { iframe.src = ""; }, 300); // Clear source to stop audio
+    };
+
+    window.toggleFullscreen = function() {
+        if (!document.fullscreenElement) {
+            gameWindow.requestFullscreen().catch(err => console.log(err));
+        } else {
+            document.exitFullscreen();
+        }
+    };
+
+    // 5. SAVE DATA BRIDGE
+    window.addEventListener("message", async (event) => {
+        // Security: Only accept from your games domain
+        if (!event.origin.endsWith("macbooksuck.xyz")) return;
+
+        // SAVE TO CLOUD
+        if (event.data.type === "GAME_SAVE" && currentUser) {
+            console.log("Saving...", event.data.key);
+            await supabase.from('saves').upsert({ 
+                user_id: currentUser.id, 
+                game_path: event.data.gameId, 
+                save_json: { [event.data.key]: event.data.value }
+            }, { onConflict: 'user_id, game_path' });
+        }
+    });
+
+    async function loadCloudSave(pathKey) {
+        if (!currentUser) return;
+        
+        // Find save by matching the folder name (loose match)
+        const { data } = await supabase
+            .from('saves')
+            .select('save_json')
+            .eq('user_id', currentUser.id)
+            .ilike('game_path', `%${pathKey}%`) 
+            .maybeSingle();
+
+        if (data && data.save_json) {
+            console.log("Sending Cloud Save to Game...");
+            iframe.contentWindow.postMessage({
+                type: "LOAD_SAVE",
+                payload: data.save_json
+            }, "*");
+        }
+    }
+</script>
     
     <script>
     document.querySelectorAll('.game-button').forEach(btn => {
