@@ -1871,13 +1871,19 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         </div>
     </div>
 
-    <div id="game-modal" class="modal-overlay">
+<div id="game-modal" class="modal-overlay">
     <div class="game-window" id="game-window-box">
         
         <div class="window-bar">
-            <div id="save-indicator" class="save-status">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-                Cloud Save Active
+            <div style="display:flex; gap:15px; align-items:center;">
+                <div id="save-indicator" class="save-status">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    Cloud Save Active
+                </div>
+                
+                <a id="old-link-btn" href="#" target="_blank" style="display:none; color:#ff6b35; font-size:0.8rem; text-decoration:none; border:1px solid #ff6b35; padding:4px 8px; border-radius:4px;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Restore Old Saves
+                </a>
             </div>
             
             <div class="window-controls">
