@@ -315,8 +315,14 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
 </div>
 
 <div class="header-controls">
-    <button class="login-btn" onclick="openAuthModal()">
-        <i class="fa-solid fa-user"></i> Login / Sign Up
+    <button class="settings-toggle" onclick="toggleSettings()">
+        <i class="fa-solid fa-gear"></i>
+    </button>
+    <div id="settingsDropdown" class="settings-dropdown">
+        </div>
+
+    <button id="main-login-btn" class="login-btn" onclick="openAuthModal()">
+        <i class="fa-solid fa-user"></i> Login
     </button>
 </div>
 
