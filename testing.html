@@ -1952,42 +1952,41 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
 
     initAuth();
 
-    // --- 4. OPEN/CLOSE GAME LOGIC ---
+// --- 4. OPEN/CLOSE GAME LOGIC ---
+window.openGame = function(gamePath, oldLinkUrl = null) {
+    console.log("Opening:", gamePath);
+    modal.classList.add('active'); 
     
-    // Call this function from your game cards: 
-    // openGame('games/bit-planes-2', 'https://games.macbooksuck.xyz/games/bit-planes-2')
-    window.openGame = function(gamePath, oldLinkUrl = null) {
-        console.log("Opening:", gamePath);
-        modal.classList.add('active'); 
+    let finalUrl;
+
+    if (oldLinkUrl === null) {
+        // CASE 1: Only gamePath provided -> Go to OLD/DIFFERENT REPO
+        // Removes any leading slash to avoid double slashes
+        const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
+        finalUrl = `https://games.macbooksuck.xyz/${cleanPath}/index.html`;
         
-        // A. Determine URL
-        // If it starts with 'http', it's external (Standard HTML5 games)
-        // If it is just 'games/unity-game', we assume it's on the new repo (Internal)
-        let finalUrl;
-        if (gamePath.startsWith('http')) {
-             finalUrl = gamePath;
-        } else {
-             // For local/moved Unity games
-             finalUrl = `/${gamePath}/index.html`; 
-             // OR use full domain: `https://main1.macbooksuck.xyz/${gamePath}/`
-        }
-        iframe.src = finalUrl;
+        // Hide the "Old Link" button since we are already on the old link
+        oldLinkBtn.style.display = "none";
 
-        // B. Handle "Old Link" Button
-        if (oldLinkUrl) {
-            oldLinkBtn.style.display = "inline-block";
-            oldLinkBtn.href = oldLinkUrl;
-            oldLinkBtn.title = "Your old saves are here (Not compatible with Cloud Save)";
-        } else {
-            oldLinkBtn.style.display = "none";
-        }
+    } else {
+        // CASE 2: Two arguments provided -> Go to NEW/MAIN REPO
+        // We assume 'gamePath' exists on the main1 site
+        finalUrl = `/${gamePath}/index.html`; 
+        
+        // Show the "Restore Old Saves" button pointing to the second argument
+        oldLinkBtn.style.display = "flex";
+        oldLinkBtn.href = oldLinkUrl;
+        oldLinkBtn.innerText = "⚠️ Restore Old Saves";
+    }
 
-        // C. Cloud Save Logic
-        if (currentUser) {
-            // Wait 1s for iframe to load, then try to fetch save
-            setTimeout(() => loadCloudSave(gamePath), 1000);
-        }
-    };
+    console.log("Loading URL:", finalUrl);
+    iframe.src = finalUrl;
+
+    // Cloud Save Logic
+    if (currentUser) {
+        setTimeout(() => loadCloudSave(gamePath), 1000);
+    }
+};
 
     window.closeGame = function() {
         modal.classList.remove('active');
