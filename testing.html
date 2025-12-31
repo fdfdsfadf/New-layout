@@ -1921,13 +1921,15 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
 </div>
 
 <div id="auth-modal" class="modal-overlay">
-    <div class="game-window" style="max-width: 400px; height: auto; padding: 25px; align-items: center; justify-content: center; text-align: center;">
+    <div class="game-window" style="max-width: 400px; height: auto; padding: 25px; align-items: center; justify-content: center; text-align: center; border: 1px solid #444;">
         <h2 style="margin-bottom: 20px; color: white;">Player Login</h2>
         
-        <input type="text" id="auth-input" placeholder="Username (or Email)" class="search-input" style="margin-bottom: 10px; width: 100%;">
+        <input type="text" id="auth-input" placeholder="Username" class="search-input" style="margin-bottom: 10px; width: 100%;">
         <input type="password" id="auth-password" placeholder="Password" class="search-input" style="margin-bottom: 20px; width: 100%;">
         
-        <div style="display: flex; gap: 10px; width: 100%;">
+        <div id="auth-error" class="error-msg"></div>
+
+        <div style="display: flex; gap: 10px; width: 100%; margin-top:10px;">
             <button class="login-btn" style="flex: 1;" onclick="handleCustomLogin('login')">Login</button>
             <button class="login-btn" style="flex: 1; background: var(--cg-purple);" onclick="handleCustomLogin('signup')">Sign Up</button>
         </div>
@@ -1939,9 +1941,10 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
             </button>
         </div>
         
-        <button class="btn-control" style="margin-top: 15px; background: transparent; border: none;" onclick="closeAuthModal()">Cancel</button>
+        <button class="btn-control" style="margin-top: 15px; background: transparent; border: none; color:#888;" onclick="closeAuthModal()">Cancel</button>
     </div>
 </div>
+        
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
