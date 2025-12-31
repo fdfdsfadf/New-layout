@@ -1924,7 +1924,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
     <div class="game-window" style="max-width: 400px; height: auto; padding: 25px; align-items: center; justify-content: center; text-align: center;">
         <h2 style="margin-bottom: 20px; color: white;">Player Login</h2>
         
-        <input type="text" id="auth-input" placeholder="Username or Email" class="search-input" style="margin-bottom: 10px; width: 100%;">
+        <input type="text" id="auth-input" placeholder="Username (or Email)" class="search-input" style="margin-bottom: 10px; width: 100%;">
         <input type="password" id="auth-password" placeholder="Password" class="search-input" style="margin-bottom: 20px; width: 100%;">
         
         <div style="display: flex; gap: 10px; width: 100%;">
@@ -1934,7 +1934,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
 
         <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 15px; width: 100%;">
             <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Or use Google</p>
-            <button class="login-btn" style="width: 100%; background: #4285F4;" onclick="signIn()">
+            <button class="login-btn" style="width: 100%; background: #4285F4;" onclick="signInWithGoogle()">
                 <i class="fa-brands fa-google"></i> Sign in with Google
             </button>
         </div>
@@ -2077,28 +2077,40 @@ window.openGame = function(gamePath, oldLinkUrl = null) {
             }, "*");
         }
     }
-    // --- CUSTOM AUTH LOGIC ---
+// --- AUTHENTICATION LOGIC ---
 
+// 1. Open/Close Modal
 function openAuthModal() {
     document.getElementById('auth-modal').classList.add('active');
 }
-
 function closeAuthModal() {
     document.getElementById('auth-modal').classList.remove('active');
 }
 
+// 2. Google Login
+async function signInWithGoogle() {
+    const { data, error } = await supabaseClient.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: window.location.href // Returns to this page after login
+        }
+    });
+    if (error) alert(error.message);
+}
+
+// 3. Custom Username/Password Login
 async function handleCustomLogin(type) {
     const input = document.getElementById('auth-input').value.trim();
     const password = document.getElementById('auth-password').value;
 
     if (!input || !password) {
-        alert("Please enter both username/email and password.");
+        alert("Please enter a username and password.");
         return;
     }
 
-    // AUTO-EMAIL LOGIC:
-    // If user types "Htwdsa", we convert it to "Htwdsa@macbooksuck.xyz"
-    // If user types "test@gmail.com", we leave it alone.
+    // THE MAGIC TRICK:
+    // If they typed "CoolGamer123", we convert it to "CoolGamer123@macbooksuck.xyz"
+    // If they typed "me@gmail.com", we leave it alone.
     let email = input;
     if (!input.includes('@')) {
         email = `${input}@macbooksuck.xyz`;
@@ -2110,24 +2122,52 @@ async function handleCustomLogin(type) {
             email: email,
             password: password
         });
-        if (!result.error) alert("Account created! You are now logged in.");
+        if (!result.error) {
+            alert("Account created! You are now logged in.");
+            closeAuthModal();
+            // Optional: Reload to refresh user state
+            location.reload(); 
+        }
     } else {
         result = await supabaseClient.auth.signInWithPassword({
             email: email,
             password: password
         });
+        if (!result.error) {
+            closeAuthModal();
+            location.reload();
+        }
     }
 
     if (result.error) {
         alert("Error: " + result.error.message);
-    } else {
-        // Success
-        closeAuthModal();
-        const { data: { user } } = await supabaseClient.auth.getUser();
-        currentUser = user;
-        updateUI(); // Updates the "Cloud Save Active" text
     }
 }
+
+// 4. Update UI on Load
+window.onload = async function() {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    currentUser = user;
+
+    if (currentUser) {
+        const btn = document.getElementById('main-login-btn');
+        if(btn) {
+             // If it's a fake email (custom username), show just the username
+             let displayName = currentUser.email;
+             if (displayName.endsWith('@macbooksuck.xyz')) {
+                 displayName = displayName.split('@')[0];
+             }
+             btn.innerHTML = `<i class="fa-solid fa-user-check"></i> ${displayName}`;
+             // Optional: Make clicking it log them out
+             btn.onclick = async () => {
+                 if(confirm("Log out?")) {
+                     await supabaseClient.auth.signOut();
+                     location.reload();
+                 }
+             };
+        }
+    }
+};
 </script>
     
     <script>
