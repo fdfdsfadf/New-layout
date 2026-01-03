@@ -1952,19 +1952,38 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
     const supabaseUrl = 'https://ahkqnnvrmpvvwudyjrin.supabase.co';
     const supabaseKey = 'sb_publishable_Y8MVDWUNrev1SXAZ8-vJhA_ZDmqDwgi'; 
     
-    // FIX: Avoid variable name conflict
+    // Create Client
     const { createClient } = window.supabase;
     const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
     // --- 2. DOM ELEMENTS ---
     const modal = document.getElementById('game-modal');
+    const authModal = document.getElementById('auth-modal'); // Added this
     const gameWindow = document.getElementById('game-window-box');
     const iframe = document.getElementById('game-frame');
     const saveIndicator = document.getElementById('save-indicator');
     const oldLinkBtn = document.getElementById('old-link-btn');
     let currentUser = null;
 
-    // --- 3. AUTH & INIT ---
+    // --- 3. HELPER FUNCTIONS (Modal & Google) ---
+    
+    function openAuthModal() {
+        authModal.classList.add('active');
+    }
+
+    function closeAuthModal() {
+        authModal.classList.remove('active');
+    }
+
+    async function signInWithGoogle() {
+        const { data, error } = await supabaseClient.auth.signInWithOAuth({
+            provider: 'google',
+            options: { redirectTo: window.location.href }
+        });
+        if (error) alert(error.message);
+    }
+
+    // --- 4. AUTH & INIT ---
     async function initAuth() {
         const { data: { user } } = await supabaseClient.auth.getUser();
         currentUser = user;
@@ -1972,58 +1991,131 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
     }
     
     function updateUI() {
+        const mainLoginBtn = document.getElementById('main-login-btn');
+        
         if (currentUser) {
-            saveIndicator.style.opacity = "1";
-            saveIndicator.innerHTML = '<i class="fa-solid fa-check-circle"></i> Cloud Saves Active';
-            saveIndicator.style.color = "var(--cg-green)";
+            // 1. Update Game Modal Status
+            if (saveIndicator) {
+                saveIndicator.style.opacity = "1";
+                saveIndicator.innerHTML = '<i class="fa-solid fa-check-circle"></i> Cloud Saves Active';
+                saveIndicator.style.color = "var(--cg-green)";
+            }
+
+            // 2. Update Main Header Button
+            if (mainLoginBtn) {
+                // Show username (strip @macbooksuck.xyz if it's a custom user)
+                let displayName = currentUser.email;
+                if (displayName.endsWith('@macbooksuck.xyz')) {
+                    displayName = displayName.split('@')[0];
+                }
+                mainLoginBtn.innerHTML = `<i class="fa-solid fa-user-check"></i> ${displayName}`;
+                // Allow logout on click
+                mainLoginBtn.onclick = async () => {
+                    if(confirm("Log out?")) {
+                        await supabaseClient.auth.signOut();
+                        location.reload();
+                    }
+                };
+            }
         } else {
-            saveIndicator.style.opacity = "1";
-            saveIndicator.style.color = "var(--cg-orange)";
-            saveIndicator.innerHTML = '<span style="cursor:pointer" onclick="signIn()">⚠️ Not Logged In (Click to Login)</span>';
+            // 1. Update Game Modal Status
+            if (saveIndicator) {
+                saveIndicator.style.opacity = "1";
+                saveIndicator.style.color = "var(--cg-orange)";
+                saveIndicator.innerHTML = '<span style="cursor:pointer" onclick="openAuthModal()">⚠️ Not Logged In (Click to Login)</span>';
+            }
+            
+            // 2. Update Main Header Button
+            if (mainLoginBtn) {
+                mainLoginBtn.innerHTML = `<i class="fa-solid fa-user"></i> Login`;
+                mainLoginBtn.onclick = openAuthModal;
+            }
         }
     }
 
-    async function signIn() {
-        await supabaseClient.auth.signInWithOAuth({ provider: 'google' });
+    // --- 5. CUSTOM LOGIN LOGIC ---
+    async function handleCustomLogin(type) {
+        const input = document.getElementById('auth-input').value.trim();
+        const password = document.getElementById('auth-password').value;
+        const errorBox = document.getElementById('auth-error');
+
+        // Reset error display
+        if(errorBox) { errorBox.style.display = 'none'; errorBox.innerText = ''; }
+
+        if (!input || !password) {
+            if(errorBox) {
+                errorBox.innerText = "Please enter a username and password.";
+                errorBox.style.display = 'block';
+            } else { alert("Missing info"); }
+            return;
+        }
+
+        // Auto-email logic: "User" -> "User@macbooksuck.xyz"
+        let email = input;
+        if (!input.includes('@')) {
+            email = `${input}@macbooksuck.xyz`;
+        }
+
+        let result;
+        if (type === 'signup') {
+            result = await supabaseClient.auth.signUp({ email: email, password: password });
+            if (!result.error) {
+                if(errorBox) {
+                    errorBox.style.background = 'rgba(0,255,0,0.1)';
+                    errorBox.style.color = '#4ade80';
+                    errorBox.innerText = "Account created! Logging in...";
+                    errorBox.style.display = 'block';
+                }
+                setTimeout(() => location.reload(), 1000);
+            }
+        } else {
+            result = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
+            if (!result.error) {
+                closeAuthModal();
+                location.reload();
+            }
+        }
+
+        if (result.error) {
+            if(errorBox) {
+                errorBox.style.background = 'rgba(255,0,0,0.1)';
+                errorBox.style.color = '#ff6b6b';
+                errorBox.innerText = result.error.message;
+                errorBox.style.display = 'block';
+            } else { alert(result.error.message); }
+        }
     }
 
+    // Initialize Auth immediately
     initAuth();
 
-// --- 4. OPEN/CLOSE GAME LOGIC ---
-window.openGame = function(gamePath, oldLinkUrl = null) {
-    console.log("Opening:", gamePath);
-    modal.classList.add('active'); 
-    
-    let finalUrl;
-
-    if (oldLinkUrl === null) {
-        // CASE 1: Only gamePath provided -> Go to OLD/DIFFERENT REPO
-        // Removes any leading slash to avoid double slashes
-        const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
-        finalUrl = `https://games.macbooksuck.xyz/${cleanPath}/index.html`;
+    // --- 6. OPEN/CLOSE GAME LOGIC ---
+    window.openGame = function(gamePath, oldLinkUrl = null) {
+        console.log("Opening:", gamePath);
+        modal.classList.add('active'); 
         
-        // Hide the "Old Link" button since we are already on the old link
-        oldLinkBtn.style.display = "none";
+        let finalUrl;
 
-    } else {
-        // CASE 2: Two arguments provided -> Go to NEW/MAIN REPO
-        // We assume 'gamePath' exists on the main1 site
-        finalUrl = `/${gamePath}/index.html`; 
-        
-        // Show the "Restore Old Saves" button pointing to the second argument
-        oldLinkBtn.style.display = "flex";
-        oldLinkBtn.href = oldLinkUrl;
-        oldLinkBtn.innerText = "⚠️ Restore Old Saves";
-    }
+        if (oldLinkUrl === null) {
+            // CASE 1: Old Repo (games.macbooksuck.xyz)
+            const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
+            finalUrl = `https://games.macbooksuck.xyz/${cleanPath}/index.html`;
+            oldLinkBtn.style.display = "none";
+        } else {
+            // CASE 2: New Repo (main1...) + Restore Button
+            finalUrl = `/${gamePath}/index.html`; 
+            oldLinkBtn.style.display = "flex";
+            oldLinkBtn.href = oldLinkUrl;
+            oldLinkBtn.innerText = "⚠️ Restore Old Saves";
+        }
 
-    console.log("Loading URL:", finalUrl);
-    iframe.src = finalUrl;
+        console.log("Loading URL:", finalUrl);
+        iframe.src = finalUrl;
 
-    // Cloud Save Logic
-    if (currentUser) {
-        setTimeout(() => loadCloudSave(gamePath), 1000);
-    }
-};
+        if (currentUser) {
+            setTimeout(() => loadCloudSave(gamePath), 1000);
+        }
+    };
 
     window.closeGame = function() {
         modal.classList.remove('active');
@@ -2038,17 +2130,14 @@ window.openGame = function(gamePath, oldLinkUrl = null) {
         }
     };
 
-    // --- 5. SAVE DATA BRIDGE (For HTML5 Games) ---
+    // --- 7. SAVE DATA BRIDGE ---
     window.addEventListener("message", async (event) => {
-        // Allow messages from your game domain AND your main domain
         const allowed = ["macbooksuck.xyz", "localhost", "127.0.0.1"];
         const originMatch = allowed.some(domain => event.origin.includes(domain));
         if (!originMatch) return;
 
         if (event.data.type === "GAME_SAVE" && currentUser) {
             console.log("Saving to Cloud...", event.data.key);
-            
-            // Generate ID: Use the ID sent by game, OR fallback to folder name
             const gameId = event.data.gameId || iframe.src.split('/').slice(-2)[0];
 
             await supabaseClient.from('saves').upsert({ 
@@ -2062,7 +2151,7 @@ window.openGame = function(gamePath, oldLinkUrl = null) {
     async function loadCloudSave(pathKey) {
         if (!currentUser) return;
         
-        // Extract a simple ID from the path (e.g. "bit-planes-2")
+        // Normalize path key for searching
         const searchKey = pathKey.replace('https://', '').replace('games.macbooksuck.xyz/', '').replace(/\//g, '');
 
         const { data } = await supabaseClient
@@ -2080,97 +2169,6 @@ window.openGame = function(gamePath, oldLinkUrl = null) {
             }, "*");
         }
     }
-// --- AUTHENTICATION LOGIC ---
-
-// 1. Open/Close Modal
-function openAuthModal() {
-    document.getElementById('auth-modal').classList.add('active');
-}
-function closeAuthModal() {
-    document.getElementById('auth-modal').classList.remove('active');
-}
-
-// 2. Google Login
-async function signInWithGoogle() {
-    const { data, error } = await supabaseClient.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-            redirectTo: window.location.href // Returns to this page after login
-        }
-    });
-    if (error) alert(error.message);
-}
-
-// 3. Custom Username/Password Login
-async function handleCustomLogin(type) {
-    const input = document.getElementById('auth-input').value.trim();
-    const password = document.getElementById('auth-password').value;
-
-    if (!input || !password) {
-        alert("Please enter a username and password.");
-        return;
-    }
-
-    // THE MAGIC TRICK:
-    // If they typed "CoolGamer123", we convert it to "CoolGamer123@macbooksuck.xyz"
-    // If they typed "me@gmail.com", we leave it alone.
-    let email = input;
-    if (!input.includes('@')) {
-        email = `${input}@macbooksuck.xyz`;
-    }
-
-    let result;
-    if (type === 'signup') {
-        result = await supabaseClient.auth.signUp({
-            email: email,
-            password: password
-        });
-        if (!result.error) {
-            alert("Account created! You are now logged in.");
-            closeAuthModal();
-            // Optional: Reload to refresh user state
-            location.reload(); 
-        }
-    } else {
-        result = await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
-        if (!result.error) {
-            closeAuthModal();
-            location.reload();
-        }
-    }
-
-    if (result.error) {
-        alert("Error: " + result.error.message);
-    }
-}
-
-// 4. Update UI on Load
-window.onload = async function() {
-    const { data: { user } } = await supabaseClient.auth.getUser();
-    currentUser = user;
-
-    if (currentUser) {
-        const btn = document.getElementById('main-login-btn');
-        if(btn) {
-             // If it's a fake email (custom username), show just the username
-             let displayName = currentUser.email;
-             if (displayName.endsWith('@macbooksuck.xyz')) {
-                 displayName = displayName.split('@')[0];
-             }
-             btn.innerHTML = `<i class="fa-solid fa-user-check"></i> ${displayName}`;
-             // Optional: Make clicking it log them out
-             btn.onclick = async () => {
-                 if(confirm("Log out?")) {
-                     await supabaseClient.auth.signOut();
-                     location.reload();
-                 }
-             };
-        }
-    }
-};
 </script>
     
     <script>
