@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="./splash.png" />
+    <title>Santy is Home</title>
+  </head>
+  <body style="text-align: center;">
+    <canvas id="unity-canvas" width="1280" height="720" style="width: 1280px; height: 720px; background: #601527;"></canvas>
+    <script src="Build/WebGL.loader.js"></script>
+    <script>
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/WebGL.data.gz",
+        frameworkUrl: "Build/WebGL.framework.js.gz",
+        codeUrl: "Build/WebGL.wasm.gz",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Kulu",
+        productName: "Santy is Home",
+        productVersion: "0.1",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      });
+    </script>
+  
+<script>
+(function() {
+    const PARENT_DOMAIN = "https://main1.macbooksuck.xyz"; 
+
+    window.addEventListener("message", (event) => {
+        if (event.origin !== PARENT_DOMAIN) return;
+        if (event.data.type === "LOAD_SAVE") {
+            const data = event.data.payload;
+            Object.keys(data).forEach(key => localStorage.setItem(key, data[key]));
+            console.log("[Bridge] Save Loaded");
+        }
+    });
+
+    const originalSetItem = localStorage.setItem;
+    localStorage.setItem = function(key, value) {
+        originalSetItem.apply(this, arguments);
+        const uniqueGameId = window.location.hostname + window.location.pathname;
+        window.parent.postMessage({
+            type: "GAME_SAVE",
+            key: key,
+            value: value,
+            gameId: uniqueGameId 
+        }, PARENT_DOMAIN);
+    };
+})();
+</script>
+
+</body>
+</html>

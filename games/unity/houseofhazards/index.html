@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>House of Hazards</title>
+    <link rel="shortcut icon" href="style/favicon.ico">
+    <link rel="stylesheet" href="style/style.css">
+	<script src="/adinLoader.js"></script>
+	<script src="UnityLoader.js"></script>
+    <script src="UnityProgress.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "build.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
+    </script>
+  </head>
+  <body>
+    <div class="webgl-content">
+      <div id="gameContainer" style="width: 100%; height: 95%; margin: auto;"></div>
+	  <div class="footer">
+	            <div class="webgl-logo"></div>
+	            <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+	            <div class="title">House of Hazards</div>
+	        </div>
+    </div>
+	<script>
+       if (typeof getAdinDomain !== 'undefined') {
+           const bodyTag = document.getElementsByTagName('body')[0];
+
+           let addAdinPreroll = document.createElement('script');
+            addAdinPreroll.src = getAdinDomain;
+            bodyTag.appendChild(addAdinPreroll);
+        }
+  </script>
+  
+<script>
+(function() {
+    const PARENT_DOMAIN = "https://main1.macbooksuck.xyz"; 
+
+    window.addEventListener("message", (event) => {
+        if (event.origin !== PARENT_DOMAIN) return;
+        if (event.data.type === "LOAD_SAVE") {
+            const data = event.data.payload;
+            Object.keys(data).forEach(key => localStorage.setItem(key, data[key]));
+            console.log("[Bridge] Save Loaded");
+        }
+    });
+
+    const originalSetItem = localStorage.setItem;
+    localStorage.setItem = function(key, value) {
+        originalSetItem.apply(this, arguments);
+        const uniqueGameId = window.location.hostname + window.location.pathname;
+        window.parent.postMessage({
+            type: "GAME_SAVE",
+            key: key,
+            value: value,
+            gameId: uniqueGameId 
+        }, PARENT_DOMAIN);
+    };
+})();
+</script>
+
+</body>
+</html>
