@@ -1,28 +1,53 @@
 <!DOCTYPE html><html><head><meta charset='utf8'><title>Duck Life 2</title><style>@import url(https://fonts.googleapis.com/css2?family=Inconsolata&display=swap);body{background:#000;margin:0;width:100vw;height:100vh;display:flex}.container{display:inline-block;position:fixed;margin:auto!important;top:0;bottom:0;left:0;right:0;width:100vw;height:100vh;z-index:1}.container canvas{width:100%;height:100%}.info{z-index:5;padding:25px;background:#fff;border:1px solid #000;margin:auto;position:relative;top:0;bottom:0;left:0;right:0;display:flex;align-content:center;align-items:center;justify-content:space-evenly;gap:15px;color:#777;font-family:Inconsolata,monospace;user-select:none}.info .desc{font-weight:700}.bar{width:150px;height:10px;background:#eee;border:1px solid #bbb;display:block}.bar .fill{height:100%;background:#07d;outline:1px solid #37a;display:block;z-index:7}</style></head><body><div class='info'><div class='desc'>Downloading data...</div><div class='bar'><div class='fill'></div></div></div><div class='container' id='container'></div><script src='unity.js'></script><script>var info = { wrap: document.querySelector('.info'), bar: document.querySelector('.info .bar .fill') }; UnityLoader.instantiate('container', { companyName: 'Wix Games', productName: 'Duck Life', dataUrl: 'WebGL2Wix.data.unityweb', asmCodeUrl: 'WebGL2Wix.asm.code.unityweb', asmMemoryUrl: 'WebGL2Wix.asm.memory.unityweb', asmFrameworkUrl: 'WebGL2Wix.asm.framework.unityweb', TOTAL_MEMORY: 268435456, graphicsAPI: ['WebGL 2.0', 'WebGL 1.0'], webglContextAttributes: {preserveDrawingBuffer: false}, splashScreenStyle: 'Dark', backgroundColor: '#000000' }, { onProgress: (unity, progress) => (info.bar.style.width = (progress * 100) + '%', progress == 1 && info.wrap.remove()) })</script>
 <script>
 (function() {
-    const PARENT_DOMAIN = "https://main1.macbooksuck.xyz"; 
+    const UNITY_DB_PATH = '/idbfs'; 
+    const CHECK_INTERVAL_MS = 5000; 
 
+    // 1. SAVE: Periodically check for file changes
+    setInterval(async () => {
+        if (typeof FS === 'undefined') return; 
+        try {
+            // This path covers Unity PlayerPrefs; Godot uses a similar FS structure
+            const filePath = `${UNITY_DB_PATH}/PlayerPrefs`;
+            const stream = FS.open(filePath, 'r');
+            if (stream) {
+                const stat = FS.stat(filePath);
+                const buf = new Uint8Array(stat.size);
+                FS.read(stream, buf, 0, stat.size, 0);
+                FS.close(stream);
+                
+                const base64Data = btoa(String.fromCharCode.apply(null, buf));
+                window.parent.postMessage({
+                    type: "GAME_SAVE",
+                    key: "unity_save_file_v1", 
+                    value: base64Data,
+                    gameId: window.location.pathname
+                }, "*"); 
+            }
+        } catch (e) {}
+    }, CHECK_INTERVAL_MS); 
+
+    // 2. LOAD: Write data back to FS
     window.addEventListener("message", (event) => {
-        if (event.origin !== PARENT_DOMAIN) return;
         if (event.data.type === "LOAD_SAVE") {
-            const data = event.data.payload;
-            Object.keys(data).forEach(key => localStorage.setItem(key, data[key]));
-            console.log("[Bridge] Save Loaded");
+            const base64Data = event.data.payload["unity_save_file_v1"];
+            if (base64Data && typeof FS !== 'undefined') {
+                try {
+                    const binaryString = atob(base64Data);
+                    const bytes = new Uint8Array(binaryString.length);
+                    for (let i = 0; i < binaryString.length; i++) {
+                        bytes[i] = binaryString.charCodeAt(i);
+                    }
+                    const filePath = `${UNITY_DB_PATH}/PlayerPrefs`;
+                    const stream = FS.open(filePath, 'w+');
+                    FS.write(stream, bytes, 0, bytes.length, 0);
+                    FS.close(stream);
+                    FS.syncfs(false, () => console.log("[Bridge] Save Restored to Engine"));
+                } catch(e) { console.error(e); }
+            }
         }
     });
-
-    const originalSetItem = localStorage.setItem;
-    localStorage.setItem = function(key, value) {
-        originalSetItem.apply(this, arguments);
-        const uniqueGameId = window.location.hostname + window.location.pathname;
-        window.parent.postMessage({
-            type: "GAME_SAVE",
-            key: key,
-            value: value,
-            gameId: uniqueGameId 
-        }, PARENT_DOMAIN);
-    };
 })();
 </script>
 

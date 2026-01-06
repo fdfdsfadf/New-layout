@@ -132,28 +132,53 @@
   
 <script>
 (function() {
-    const PARENT_DOMAIN = "https://main1.macbooksuck.xyz"; 
+    const UNITY_DB_PATH = '/idbfs'; 
+    const CHECK_INTERVAL_MS = 5000; 
 
+    // 1. SAVE: Periodically check for file changes
+    setInterval(async () => {
+        if (typeof FS === 'undefined') return; 
+        try {
+            // This path covers Unity PlayerPrefs; Godot uses a similar FS structure
+            const filePath = `${UNITY_DB_PATH}/PlayerPrefs`;
+            const stream = FS.open(filePath, 'r');
+            if (stream) {
+                const stat = FS.stat(filePath);
+                const buf = new Uint8Array(stat.size);
+                FS.read(stream, buf, 0, stat.size, 0);
+                FS.close(stream);
+                
+                const base64Data = btoa(String.fromCharCode.apply(null, buf));
+                window.parent.postMessage({
+                    type: "GAME_SAVE",
+                    key: "unity_save_file_v1", 
+                    value: base64Data,
+                    gameId: window.location.pathname
+                }, "*"); 
+            }
+        } catch (e) {}
+    }, CHECK_INTERVAL_MS); 
+
+    // 2. LOAD: Write data back to FS
     window.addEventListener("message", (event) => {
-        if (event.origin !== PARENT_DOMAIN) return;
         if (event.data.type === "LOAD_SAVE") {
-            const data = event.data.payload;
-            Object.keys(data).forEach(key => localStorage.setItem(key, data[key]));
-            console.log("[Bridge] Save Loaded");
+            const base64Data = event.data.payload["unity_save_file_v1"];
+            if (base64Data && typeof FS !== 'undefined') {
+                try {
+                    const binaryString = atob(base64Data);
+                    const bytes = new Uint8Array(binaryString.length);
+                    for (let i = 0; i < binaryString.length; i++) {
+                        bytes[i] = binaryString.charCodeAt(i);
+                    }
+                    const filePath = `${UNITY_DB_PATH}/PlayerPrefs`;
+                    const stream = FS.open(filePath, 'w+');
+                    FS.write(stream, bytes, 0, bytes.length, 0);
+                    FS.close(stream);
+                    FS.syncfs(false, () => console.log("[Bridge] Save Restored to Engine"));
+                } catch(e) { console.error(e); }
+            }
         }
     });
-
-    const originalSetItem = localStorage.setItem;
-    localStorage.setItem = function(key, value) {
-        originalSetItem.apply(this, arguments);
-        const uniqueGameId = window.location.hostname + window.location.pathname;
-        window.parent.postMessage({
-            type: "GAME_SAVE",
-            key: key,
-            value: value,
-            gameId: uniqueGameId 
-        }, PARENT_DOMAIN);
-    };
 })();
 </script>
 
