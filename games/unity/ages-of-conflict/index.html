@@ -129,6 +129,7 @@
     setInterval(async () => {
         if (typeof FS === 'undefined') return; 
         try {
+            // This path covers Unity PlayerPrefs; Godot uses a similar FS structure
             const filePath = `${UNITY_DB_PATH}/PlayerPrefs`;
             const stream = FS.open(filePath, 'r');
             if (stream) {
@@ -137,7 +138,6 @@
                 FS.read(stream, buf, 0, stat.size, 0);
                 FS.close(stream);
                 
-                // Send Base64 String
                 const base64Data = btoa(String.fromCharCode.apply(null, buf));
                 window.parent.postMessage({
                     type: "GAME_SAVE",
@@ -164,7 +164,7 @@
                     const stream = FS.open(filePath, 'w+');
                     FS.write(stream, bytes, 0, bytes.length, 0);
                     FS.close(stream);
-                    FS.syncfs(false, () => console.log("[Connector] Save Restored"));
+                    FS.syncfs(false, () => console.log("[Bridge] Save Restored to Engine"));
                 } catch(e) { console.error(e); }
             }
         }
