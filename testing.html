@@ -1889,8 +1889,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
             <div class="window-controls">
                 <button class="btn-control red" onclick="closeGame()"></button>
                 <button class="btn-control yellow" onclick="toggleFullscreen()"></button>
-                <button class="btn-control green"></button>
-            </div>
+                <button class="btn-control green"></button> </div>
             <span class="window-title" id="game-title-text">Playing Game</span>
             
             <div id="save-indicator" class="save-status">
@@ -1906,9 +1905,11 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
             <button class="footer-btn" onclick="toggleFullscreen()">
                 <i class="fa-solid fa-expand"></i> Fullscreen
             </button>
+            
             <a id="old-link-btn" href="#" target="_blank" class="footer-btn" style="display:none; color: var(--cg-orange);">
-                ⚠️ Restore Old Saves
+                <i class="fa-solid fa-triangle-exclamation"></i> Restore Old Saves
             </a>
+
             <button class="footer-btn" onclick="closeGame()">
                 <i class="fa-solid fa-xmark"></i> Close
             </button>
@@ -1923,7 +1924,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         <input type="text" id="auth-input" placeholder="Username" class="search-input" style="margin-bottom: 10px; width: 100%;">
         <input type="password" id="auth-password" placeholder="Password" class="search-input" style="margin-bottom: 20px; width: 100%;">
         
-        <div id="auth-error" class="error-msg"></div>
+        <div id="auth-error" class="error-msg" style="display:none; color:#ff6b6b; margin-bottom:10px;"></div>
 
         <div style="display: flex; gap: 10px; width: 100%; margin-top:10px;">
             <button class="login-btn" style="flex: 1;" onclick="handleCustomLogin('login')">Login</button>
@@ -1954,7 +1955,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
     const gameModal = document.getElementById('game-modal');
     const authModal = document.getElementById('auth-modal');
     const gameFrame = document.getElementById('game-frame');
-    const gameTitle = document.getElementById('game-title-text');
+    const gameTitle = document.getElementById('game-title-text'); // NEW: Targets the window title
     const saveIndicator = document.getElementById('save-indicator');
     const oldLinkBtn = document.getElementById('old-link-btn');
     let currentUser = null;
@@ -1989,6 +1990,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         // 2. Update Header Button
         if (loginBtn) {
             if (currentUser) {
+                // Strip the fake email domain for display
                 let name = currentUser.email.replace('@macbooksuck.xyz', '');
                 loginBtn.innerHTML = `<i class="fa-solid fa-user-check"></i> ${name}`;
                 loginBtn.onclick = async () => {
@@ -2021,7 +2023,9 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
 
         if (!input || !password) return alert("Please enter details");
 
+        // Automatically append fake domain if user just types a name
         let email = input.includes('@') ? input : `${input}@macbooksuck.xyz`;
+        
         let result = type === 'signup' 
             ? await supabaseClient.auth.signUp({ email, password })
             : await supabaseClient.auth.signInWithPassword({ email, password });
@@ -2043,7 +2047,8 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         console.log("Opening:", gamePath);
         gameModal.classList.add('active');
         
-        // Set Title based on path (e.g., games/unity/bitplanes -> Bitplanes)
+        // NEW: Set Title based on path (e.g., games/unity/bitplanes -> Bitplanes)
+        // This makes the window look like a real app
         let name = gamePath.split('/').pop().replace(/-/g, ' ');
         gameTitle.innerText = name.charAt(0).toUpperCase() + name.slice(1);
 
@@ -2104,7 +2109,6 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
     // Category Filter
     categoryButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all
             categoryButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
