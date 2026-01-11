@@ -1,0 +1,2361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8167917296547686"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDD8GECEW2" crossorigin="anonymous"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZDD8GECEW2');
+  </script>
+    <script src="TemplateData/UnityProgress.js"></script>
+    <meta property="og:title" content="Play Unblocked Games | macbooksuck.xyz">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="macbooksuck games unblocked anti-teachers mySBC">
+    <meta property="og:description" content="macbooksuck">
+    <meta property="og:type" content="website">
+    <meta name="google-adsense-account" content="ca-pub-8167917296547686">
+    <meta name="keywords" content="macbooksuck, macbooksuck xyz, macbooksuck.com, mackbooksuck, macbookssuck, mackbookssuck, mySBC, macbook suck, macbooks suck, mcbooksuck, mcbooksucks">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <title>Education Perfect | Learning, Assessment and Analytics Platform</title>
+    <link rel="icon" href="assets/favicon/education-perfect.png">
+    <link rel="stylesheet" href="styles.css?2313123dsfsdafgyat">
+    <meta property="og:title" content="Play Unblocked Games | macbooksuck.xyz">
+    <meta property="og:description" content="Instant access to browser-based games. No downloads.">
+    <meta property="og:image" content="https://main1.macbooksuck.xyz/assets/favicon/education-perfect.png">
+    <meta property="og:url" content="https://main1.macbooksuck.xyz">
+    <link rel="canonical" href="https://main1.macbooksuck.xyz">
+    <style>
+.icon-bar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 0;
+  background-color: transparent;
+  position: static; /* Remove fixed positioning */
+  width: 100%;
+}
+
+.icon-bar a {
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.icon-bar a:hover {
+  color: #ffcc00;
+}
+
+.icon-bar i,
+.icon-bar img.nav-icon {
+  max-width: 24px;
+  max-height: 24px;
+}
+
+.icon-bar a.active i {
+  color: #1eff00;
+  text-shadow: 0 0 5px #1eff00, 0 0 10px #1eff00;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.vertical-icons {
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+        
+.icon-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+
+#idleCountdown {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(25, 25, 25, 0.9);
+  color: #1eff00;
+  font-size: 20px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-family: 'Courier New', monospace;
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 0 10px #1eff00, 0 0 20px #1eff00;
+  text-shadow: 0 0 5px #1eff00;
+  animation: pulseGlow 1s infinite alternate;
+}
+
+        
+#webAppPopup {
+  position: fixed !important;
+  bottom: 32px !important;
+  right: 32px !important;
+  left: auto !important;
+  top: auto !important;
+  margin: 0 !important;
+  z-index: 10000 !important;
+  width: 340px;
+  max-width: 90vw;
+  min-width: 180px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  background: #09003d;
+  color: #fff;
+  border-radius: 12px;
+  display: none; /* default off */
+}
+        
+#webAppPopup .callout-header {
+    font-weight: bold;
+    font-size: 16px;
+}
+  
+    </style>
+</head>
+<body>
+        <div class="icon-bar">
+<a href="https://discord.com/invite/bUhB26NxNC" target="_blank" title="Join our Discord">
+  <img src="assets/img/discord.png" alt="Discord" class="icon-img">
+</a>
+
+<a href="#" id="musicToggle" title="Toggle Music">
+  <img src="assets/img/2music-off.png" alt="Music Toggle" id="musicIcon" class="icon-img" />
+</a>
+</div>
+
+<div id="musicPlayer" style="display:none; position:fixed;
+top:60px; right:20px; background:#000; border:2px solid violet;
+padding:10px; border-radius:15px; z-index:9999;">
+  <audio id="bgAudio" controls>
+    <source src="sigma.mp3" type="audio/mpeg">
+    Your browser doesn't support audio.
+  </audio>
+</div>
+<div id="idleOverlay" style="display:none; position:fixed; top:0;
+left:0; width:100vw; height:100vh; background:#000; z-index:99999;">
+  <img src="assets/img/Drawing-29.sketchpad.png" alt="Idle Cover" style="width:100%; height:100%; object-fit:cover;">
+  
+<button id="resumeBtn" onclick="hideIdleOverlay()" style="
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6px 12px;
+  font-size: 14px;
+  background: #888;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+">
+  Resume
+</button>
+</div>
+
+<div id="idleCountdown" style="
+  position:fixed;
+  top:50px;
+  left:50%;
+  transform:translateX(-50%);
+  background-color:rgba(0,0,0,0.5);
+  color:#1eff00;
+  font-size:18px;
+  padding:6px 12px;
+  border-radius:10px;
+  z-index:9999;
+  font-family:monospace;
+  pointer-events:none;
+">
+  Idle timer: 20:00
+</div>
+
+<script>
+let lastActive = Date.now();
+const idleDuration = 20 * 60 * 1000; // 20 minutes
+const countdownEl = document.getElementById("idleCountdown");
+let idleActive = false;
+
+function showIdleOverlay() {
+  document.getElementById("idleOverlay").style.display = "block";
+  idleActive = true;
+}
+
+function hideIdleOverlay() {
+  document.getElementById("idleOverlay").style.display = "none";
+  idleActive = false;
+  lastActive = Date.now(); // Reset timer
+}
+
+["mousemove", "click", "scroll", "touchstart"].forEach(evtName => {
+  document.addEventListener(evtName, (e) => {
+    if (!idleActive) {
+      lastActive = Date.now();
+    } else {
+      // Prevent mouse movement from resetting timer during idle
+      if (evtName === "mousemove") {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    }
+  }, true);
+});
+
+// Resume only via key press or resume button
+document.addEventListener("keydown", () => {
+  if (idleActive) hideIdleOverlay();
+});
+
+document.getElementById("resumeBtn").addEventListener("click", () => {
+  if (idleActive) hideIdleOverlay();
+});
+
+// Update countdown every second
+setInterval(() => {
+  const timeLeft = idleDuration - (Date.now() - lastActive);
+  if (timeLeft <= 0 && !idleActive) {
+    showIdleOverlay();
+    countdownEl.textContent = "Idle timer: 00:00";
+  } else if (!idleActive) {
+    const minutes = Math.floor(timeLeft / 60000);
+    const seconds = Math.floor((timeLeft % 60000) / 1000);
+    countdownEl.textContent = `Idle timer: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
+}, 1000);
+</script>
+
+<script>
+function toggleMusicPlayer() {
+  const player = document.getElementById("musicPlayer");
+  const audio = document.getElementById("bgAudio");
+  const icon = document.getElementById("musicIcon");
+
+  if (player.style.display === "none") {
+    player.style.display = "block";
+    audio.play();
+    icon.src = "assets/img/1music-on.png";
+  } else {
+    player.style.display = "none";
+    audio.pause();
+    icon.src = "assets/img/2music-off.png";
+  }
+}
+
+// Hi? why are you reading this? eh this is a watermark for macbooksuck so ok bye!
+document.getElementById("musicToggle").addEventListener("click", function(e) {
+  e.preventDefault();
+  toggleMusicPlayer();
+});
+</script>
+
+  <!-- BEGIN banner overlay -->
+  <div id="bannerOverlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="banner" role="document">
+      <button class="close" id="closeBtn" aria-label="Close">✕</button>
+      <div class="banner-inner">
+        <div class="top-title">Avoid the ban!</div>
+        <div class="message">
+          <div class="thumb" aria-hidden="true">
+            <img src="assets/img/kangaroo.png" alt="Kangaroo logo"/>
+          </div>
+          <div class="text">
+            <p><strong>Macbooksuck</strong> has partnered with <strong>guahhinc</strong> to release a social media site for under 16s. (api likely blocked at school)</p>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;display:flex;justify-content:center">
+          <a class="btn" id="openSite" href="https://kangaroo.macbooksuck.xyz" target="_blank" rel="noopener noreferrer">Open Kangaroo →</a>
+          <button class="btn secondary" id="dismissBtn">Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END banner overlay -->
+
+    
+<div class="settings-container">
+  <button class="settings-toggle" onclick="toggleSettings()">⚙️</button>
+  <div class="settings-dropdown" id="settingsDropdown">
+    <label>
+      Tab Title:
+      <input type="text" id="titleInput" placeholder="Enter new tab title" />
+    </label>
+    <label>
+      Tab Icon URL:
+      <input type="text" id="faviconInput" placeholder="Enter favicon image URL" />
+    </label>
+    <label>
+      Idle Timer (minutes):
+      <input type="number" id="idleTimeInput" placeholder="e.g. 20" min="1" />
+    </label>
+    <label>
+      Idle Image URL:
+      <input type="text" id="idleImageInput" placeholder="Enter image URL for idle overlay" />
+    </label>
+
+    <div class="settings-actions">
+      <button class="reset-btn" onclick="resetSettings()">Reset</button>
+      <!-- Future button can go here -->
+    </div>
+
+    <button onclick="applySettings()" class="apply-btn">Apply</button>
+  </div>
+</div>
+
+<div class="header-controls">
+    <button id="main-login-btn" class="login-btn" onclick="openAuthModal()">
+        <i class="fa-solid fa-user"></i> Login
+    </button>
+</div>
+
+
+    
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-logo">
+                <div class="logo-icon">
+                    <span>CG</span>
+                </div>
+                <div class="logo-text">
+                    <div>macbook</div>
+                    <div>suck</div>
+                </div>
+            </div>
+
+            <div class="header-search">
+                <input type="text" placeholder="Search Bar!" class="search-input">
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <div class="welcome-section">
+                        <h2>Welcome to macbooksuck</h2>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-dot blue"></span>
+                                125+ games
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-dot green"></span>
+                                No install needed
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-dot orange"></span>
+                                On any device
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-dot purple"></span>
+                                Play with friends
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav class="sidebar-nav">
+                        <div class="sidebar-item active" id="navHome" onclick="showHome()">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-label">Home</span>
+                        </div>
+
+                        <a href="https://movie-hub.macbooksuck.xyz" class="sidebar-item" target="_blank">
+                            <span class="nav-icon">🎬</span>
+                            <span class="nav-label">Movie Hub</span>
+                        </a>
+                        
+                        <a href="https://forms.office.com/r/u4eZi5Cr4D" class="sidebar-item" target="_blank">
+                            <span class="nav-icon">📋</span>
+                            <span class="nav-label">feedback (microsoft form)</span>
+                        </a>
+
+                        <a href="hhttps://forms.gle/hWubwTMsiNaT93it7" class="sidebar-item" target="_blank">
+                            <span class="nav-icon">📋</span>
+                            <span class="nav-label">feedback (google form)</span>
+                        </a>
+                        
+                        <div class="sidebar-item" id="navEmulators" onclick="showEmulators()">
+                              <span class="nav-icon">🎮</span>
+                              <span class="nav-label">Emulators</span>
+                        </div>
+
+                        <div class="sidebar-item" id="navHorror" onclick="showHorror()">
+                              <span class="nav-icon">🎮</span>
+                              <span class="nav-label">Horror games</span>
+                        </div>
+
+                        <div class="sidebar-item" id="navNew" onclick="showNewGames()">
+                              <span class="nav-icon">🆕</span>
+                              <span class="nav-label">New Games</span>
+                        </div>
+                        
+                        <a href="https://ws.macbooksuck.xyz" class="sidebar-item" target="_blank">
+                            <span class="nav-icon">🔨</span>
+                            <span class="nav-label">White Screen Tool</span>
+                        </a>
+                        
+                        <div class="sidebar-item">
+                            <span class="nav-icon">🔥</span>
+                            <span class="nav-label">Coming soon!</span>
+                        </div>
+
+                        <div class="sidebar-item">
+                            <span class="nav-icon">🤝</span>
+                            <span class="nav-label">Partners</span>
+                        </div>
+                    </nav>
+
+                        <div class="icon-bar">
+                            <a href="https://discord.com/invite/bUhB26NxNC" target="_blank" title="Join our Discord">
+                                <img src="assets/img/discord.png" alt="Discord" class="icon-img">
+                            </a>
+                            <a href="#" id="musicToggle" title="Toggle Music">
+                                <img src="assets/img/2music-off.png" alt="Music Toggle" id="musicIcon" class="icon-img" />
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            <div id="webfarmNotification" class="notif hidden" role="status" aria-live="polite" aria-atomic="true">
+                <div class="notif-inner">
+                    <div class="notif-left">
+                        <strong class="notif-title">Update</strong>
+                        <div class="notif-message">Removed DOOM</div>
+                    </div>
+                    <div class="notif-actions">
+                        <button id="notifDetails" class="notif-btn">Details</button>
+                        <button id="notifDismiss" class="notif-btn" aria-label="Dismiss notification">✕</button>
+                    </div>
+                </div>
+            </div>
+                        
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <section class="games-section">
+                    <h2 class="section-title">Games <strong>macbooksuck</strong></h2>
+                    <div class="games-grid">
+                        <div class="game-card" onclick="openGame('games/proxy')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Proxy</div>
+                                <div class="game-subtitle">Click enter portal</div>
+                            </div>
+                            <div class="badge top-rated">Working(sorta)</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/bit-planes')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/bit-planes.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">bitplanes</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/bit-planes-2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">bitplanes 2 player</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                          </div>
+
+                        <div class="game-card" onclick="openGame('games/bit-planes-2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">bitplanes 2 different repository</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/bit-planes-2', 'https://games.macbooksuck.xyz/games/bit-planes-2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">bitplanes 2 player</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/ElectronOS')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">ElectronOS Emulator</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Hot</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/10-minutes-till-dawn')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">10 Minutes Till Dawn</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                         </div>
+
+                        <a href="https://macbooksuper.xyz/games/99balls/" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">99 Balls</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                          </a>
+
+                        <a href="https://99nights.macbooksuck.xyz/" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">99 Nights In The Forrest</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                          </a>
+                        
+                        <div class="game-card" onclick="openGame('games/100ng')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">100 Player Pong</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Hot</div>
+                          </div>
+
+                        <div class="game-card" onclick="openGame('games/2048')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">2048</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge top-rated">Top rated</div>
+                        </div>
+                        
+                        <div class="game-card" onclick="openGame('games/achievementunlocked')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Achievement Unlocked</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/adarkroom')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">A Dark Room</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/ages-of-conflict')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Ages Of Conflict</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/amazing-rope-police')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Amazing Rope Police</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge top-rated">Top rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/arcadewizard')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Arcade Wizard</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+                    
+                        <div class="game-card" onclick="openGame('games/avalanche')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Avalanche</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/awesometanks2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Awesome Tanks 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+
+                        <div class="game-card" onclick="openGame('games/backrooms-2d')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Backrooms</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Horror</div>
+                        </div>
+
+
+                        <div class="game-card" onclick="openGame('games/baldis-basics')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Baldis Basics</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/baldisbasicsfieldtripcampingremake')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Baldis Basics Camping</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/basket-random')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/basket-random.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Basket Random</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+                        <a href="https://billards.macbooksuck.xyz/" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Billards/Pool</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <div class="game-card" onclick="openGame('games/bitlife')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Bitlife</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/block-blast')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Block Blast</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge top-rated">Top rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/boxing-random')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Boxing Random</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/burger-and-frights')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Burger And Frights</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Horror</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/charrio-kart')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Charrio Kart</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/cheesypuffclicker')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Cheesy Puff Clicker</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/chrome-dino')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Chrome Dino</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Hot</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/circlo')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Circlo</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+                        
+                        <a href="https://city-car-driving-stunt-master1.macbooksuck.xyz/" class="game-card">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/city-car-stunt-master.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">City Car Stunt Master</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </a>
+
+                        <div class="game-card" onclick="openGame('games/cluster')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/cluster1.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Cluster</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/connect3')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Connect 3</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/cookie-clicker')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Cookie Clicker</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/core-ball')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Core Ball</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/crossyroad')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/crossy-road.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">CrossyRoad</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge top-rated">Top rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/csgo-clicker')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">CS:GO Clicker</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card" onclick="openGame('games/ctr')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Cut the Rope</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/ctr-holiday')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Cut the Rope Holiday</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/ctr-tr')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Cut the Rope Time Travel</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/cubefield')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Cubefield</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+                  
+                        <a href="https://macbooksuper.xyz/games/dante/index.html" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Dante</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Horror</div>
+                        </a>
+
+                        <div class="game-card" onclick="openGame('games/deathcario')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Death Car IO</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/deepest-sword')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Deepest Sword</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Hot</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/death-run-3d')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Death Run 3D</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/DogeMiner')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Dodge Miner</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/dragon-vs-bricks')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Dragon VS Bricks</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/drive-mad')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Drive Mad</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge top-rated">Top rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/ducklife1')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Duck Life 1</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/ducklife2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Duck Life 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/ducklife3')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Duck Life 3</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <a href="https://duklife4.macbooksuck.xyz/index.html" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Duck Life 4</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </a>
+                        
+                        <div class="game-card" onclick="openGame('games/edge-surf')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/edge-surf.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Edge Surf</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/Epic%20Tower%20Defense')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Epic Tower Defence</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/Escape-Road-2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Escape Road 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Hot</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/Escape-Road-City-2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Escape Road City 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/evil-glitch')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Evil Glitch</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/evolution')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Evolution</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/exo')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Exo</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/fairsquares')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Fair Squares</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/flappy-bird')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/flappy-bird.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Flappy Bird</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Hot</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/flashtetris')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Flash Tetris</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/fruitninja')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Fruit Ninja</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/game-inside')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Game Inside a Game</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/geodash')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/geometry-dash.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Geometry Dash (Scratch)</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/getting-over-it/GOI.html')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Getting Over It (Scratch)</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/go-ball')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Go Ball</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/google-feud')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/google-feud.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Google Feud</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/halfLife')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Half Life 1</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/helios')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Helios</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/hba')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Hover Bot Arena</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/hextris')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Hextris</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/houseofhazards')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">House Of Hazards</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/interactivebuddy')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Interactive Buddy</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/jelly-merge')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Jelly Merge</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/jetpack-joyride')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Jetpack Joyride</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/just-fall')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Just Fall</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/kitchen-gun-game')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Kitchen Gun Game</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <a href="https://riddle.macbooksuck.xyz/Learn-to-fly/1/" class="game-card">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/ltf.png');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Learn to Fly 1</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/Learn-to-fly/2/" class="game-card">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/ltf2.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Learn to Fly 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <div class="game-card" onclick="openGame('games/madalin-stunt-cars-3')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Madalin Stunt Cars 3</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/mario')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Mario</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/minecraft-classic')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/minecraft_classic.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Minecraft Class</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge top-rated">Top rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/miniputt')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Mini-putt</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <a href="https://games.macbooksuck.xyz/error" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Monkey Mart :(</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge not-working">Not working</div>
+                        </a>
+
+                        <div class="game-card" onclick="openGame('games/monster-tracks')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Monster Tracks</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/n-gon')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">n-gon</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/Ninja%20Dash')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Ninja Dash</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/pacman3d')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Pacman 3D</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/pandemic2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Pandemic 3</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <a href="https://macbooksuper.xyz/games/paperio2/index.html" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Paper.io 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </a>
+
+                        <div class="game-card" onclick="openGame('games/particle-clicker')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Particle Clicker</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/pixel-gun-survival')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Pixel Gun Survival</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/polytrack')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/polytrack.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Polytrack</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge top-rated">Top rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/Polygon%20Fusion')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Polygon Fusion</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/portalflash')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Portal (Flash)</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/RagdollArchers')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Ragdoll Archers</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/retro-bowl')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Retro Bowl</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <a href="https://riddle.macbooksuck.xyz/School/1/" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle School 1</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/School/2/" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle School 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/School/3/" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle School 3</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/School/4/" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle School 4</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/Transfer/1/" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle Transfer 1</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/Transfer/2/" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle Transfer 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <div class="game-card" onclick="openGame('games/rolly-vortex')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Rolly Vortex</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/rooftop-snipers')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Roof-Top Snipers</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/sand-game')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Sand Game</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/sandboxels')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Sandboxels</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Hot</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/santy-is-home')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Santy Is Home</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Horror</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/scrapmetal')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Scrap Metal</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/slope')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/slope.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Slope</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge top-rated">Top rated</div>
+                        </div>
+                        
+                        <a href="https://slow-roads.macbooksuck.xyz/" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Slow Roads</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+                        
+                        <div class="game-card" onclick="openGame('games/Snow-Rider3D')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/snow-rider.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Snow Rider</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge top-rated">Top rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/snowbattle')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Snowbattle</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/soccer-random')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Soccer Random</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/space-company')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Space Company</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/spacegarden')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Space Garden</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/stack')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Stack</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/station-141')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Station 141</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/stick-duel-battle')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Stick Duel Battle</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/stickman-hook')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Stickman Hook</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/street-wheelie')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Street Wheelie</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge top-rated">Top rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/subway-surfers')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Subway Surfers</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card" onclick="openGame('games/super-star-car')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Super Star Car</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge developer-rated">Game of the Week</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/super-star-car-2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Super Star Car 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/Super%20Tic-Tac-Toe')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Super Tic-Tac-Toe</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/sm64')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Super Mario 64</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/swerve')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Swerve</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card" onclick="openGame('games/tank-trouble-2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Tank Trouble 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/tanuki-sunset')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Tanuki Sunset</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/temple-run-2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Temple Run 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/territorial.html')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">territorial.io</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/thebowlingclub')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">The Bowling Club</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/thisistheonlylevel')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">This Is The Only Level</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/timeshooter3swat')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/timeshooterswat.png');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Time Shooter 3: SWAT</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/twitch-tetris')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Twitch Tetris</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/unfairmario')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Unfair Mario</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/volley-random')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Volley Random</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/wallsmash')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Wall Smash</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <div class="game-card" onclick="openGame('games/web-farm')" style="cursor: pointer;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/web-farm.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title"></div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge only-here">Only found here</div>
+                        </div>
+
+                        <a href="https://macbooksuper.xyz/games/wordle/index.html" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Wordle Unlimited</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </a>
+
+                        <div class="game-card" onclick="openGame('games/worldshardestgame')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Worlds Hardest Game</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </div>
+                        
+                        <div class="game-card" onclick="openGame('games/yohoho_io')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Yohoho.io</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge updated">Developer rated</div>
+                        </div>
+
+                        <div class="game-card emulator-card" onclick="openGame('games/GBA')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">GameBoy Adv Emulator</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </div>
+
+                        <a href="https://fnaf.macbooksuck.xyz/hd_fnaf/index.html" class="game-card emulator-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">FNAF-Collection</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                       </a>
+                        
+                        <a href="https://99nights.macbooksuck.xyz/index.html" class="game-card horror-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">99 Nights In The Forrest</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Horror</div>
+                        </a>
+
+                        <div class="game-card horror-card" onclick="openGame('games/backrooms-2d')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Backrooms</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Horror</div>
+                        </div>
+
+                        <div class="game-card horror-card" onclick="openGame('games/burger-and-frights')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Burger And Frights</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Horror</div>
+                        </div>
+
+                        <a href="https://macbooksuper.xyz/games/dante/index.html" class="game-card horror-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Dante</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Horror</div>
+                        </a>
+
+                        <div class="game-card horror-card" onclick="openGame('games/santy-is-home')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Santy Is Home</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge hot">Horror</div>
+                        </div>
+
+                        <a href="https://99nights.macbooksuck.xyz/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">99 Nights In The Forrest</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                          </a>
+
+
+                        <div class="game-card new-card" onclick="openGame('games/block-blast')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Block Blast</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </div>
+
+                        <a href="https://billards.macbooksuck.xyz/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Billards/Pool</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <div class="game-card new-card" onclick="openGame('games/bit-planes-2')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">bitplanes 2 player</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                          </div>
+
+                        <a href="https://riddle.macbooksuck.xyz/Learn-to-fly/1/" class="game-card new-card" style="display: none;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/ltf.png');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Learn to Fly 1</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/Learn-to-fly/2/" class="game-card new-card" style="display: none;">
+                            <div class="card-background has-image" style="background-image: url('assets/img/game-previews/ltf2.jpg');"></div>
+                            <div class="card-content">
+                                <div class="game-title">Learn to Fly 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/School/1/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle School 1</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/School/2/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle School 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/School/3/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle School 3</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/School/4/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle School 4</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/Transfer/1/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle Transfer 1</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://riddle.macbooksuck.xyz/Transfer/2/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Riddle Transfer 2</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <a href="https://slow-roads.macbooksuck.xyz/" class="game-card new-card" style="display: none;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Slow Roads</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </a>
+
+                        <div class="game-card new-card" onclick="openGame('games/worldshardestgame')" style="cursor: pointer;">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Worlds Hardest Game</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                            <div class="badge new">New</div>
+                        </div>
+                        
+                </section>
+
+                <section class="games-section">
+                    <h2 class="section-title">Emulators/Others</h2>
+                    <div class="games-grid featured">
+
+                        <a href="https://discord.gg/bUhB26NxNC" class="game-card">
+                            <div class="card-background green-blue"></div>
+                            <div class="card-content">
+                                <div class="game-title">Discord</div>
+                            </div>
+                        </a>
+
+                        <a href="https://macbooksuper.xyz/scripts/fullscreen-script" class="game-card">
+                            <div class="card-background green-blue"></div>
+                            <div class="card-content">
+                                <div class="game-title">Fullscreen Script</div>
+                                <div class="game-subtitle">Popular choice</div>
+                            </div>
+                        </a>
+
+                        <a href="https://macbooksuper.xyz/scripts/tab-title-switcher-script" class="game-card">
+                            <div class="card-background green-blue"></div>
+                            <div class="card-content">
+                                <div class="game-title">Tab Title Script</div>
+                                <div class="game-subtitle">Popular choice</div>
+                            </div>
+                        </a>
+
+                        <a href="https://macbooksuper.xyz/scripts/toggle-inverted-script" class="game-card">
+                            <div class="card-background green-blue"></div>
+                            <div class="card-content">
+                                <div class="game-title">Toggle Inverted Script</div>
+                                <div class="game-subtitle">Popular choice</div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+<div id="game-modal" class="modal-overlay">
+    <div class="game-window" id="game-window-box">
+        <div class="window-header">
+            <div class="window-controls">
+                <button class="btn-control red" onclick="closeGame()"></button>
+                <button class="btn-control yellow" onclick="toggleFullscreen()"></button>
+                <button class="btn-control green"></button> </div>
+            <span class="window-title" id="game-title-text">Playing Game</span>
+            
+            <div id="save-indicator" class="save-status">
+                <i class="fa-solid fa-cloud"></i> Checking...
+            </div>
+        </div>
+
+        <div class="iframe-container">
+            <iframe id="game-frame" src="" allowfullscreen="true" scrolling="no"></iframe>
+        </div>
+
+        <div class="window-footer">
+            <button class="footer-btn" onclick="toggleFullscreen()">
+                <i class="fa-solid fa-expand"></i> Fullscreen
+            </button>
+            
+            <a id="old-link-btn" href="#" target="_blank" class="footer-btn" style="display:none; color: var(--cg-orange);">
+                <i class="fa-solid fa-triangle-exclamation"></i> Restore Old Saves
+            </a>
+
+            <button class="footer-btn" onclick="closeGame()">
+                <i class="fa-solid fa-xmark"></i> Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="auth-modal" class="modal-overlay">
+    <div class="game-window" style="max-width: 400px; height: auto; padding: 25px; align-items: center; justify-content: center; text-align: center; border: 1px solid #444;">
+        <h2 style="margin-bottom: 20px; color: white;">Player Login</h2>
+        
+        <input type="text" id="auth-input" placeholder="Username" class="search-input" style="margin-bottom: 10px; width: 100%;">
+        <input type="password" id="auth-password" placeholder="Password" class="search-input" style="margin-bottom: 20px; width: 100%;">
+        
+        <div id="auth-error" class="error-msg" style="display:none; color:#ff6b6b; margin-bottom:10px;"></div>
+
+        <div style="display: flex; gap: 10px; width: 100%; margin-top:10px;">
+            <button class="login-btn" style="flex: 1;" onclick="handleCustomLogin('login')">Login</button>
+            <button class="login-btn" style="flex: 1; background: var(--cg-purple);" onclick="handleCustomLogin('signup')">Sign Up</button>
+        </div>
+
+        <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 15px; width: 100%;">
+            <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Or use Google</p>
+            <button class="login-btn" style="width: 100%; background: #4285F4;" onclick="signInWithGoogle()">
+                <i class="fa-brands fa-google"></i> Sign in with Google
+            </button>
+        </div>
+        
+        <button class="btn-control" style="margin-top: 15px; background: transparent; border: none; color:#888;" onclick="closeAuthModal()">Cancel</button>
+    </div>
+</div>
+        
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    // --- 1. CONFIGURATION ---
+    const supabaseUrl = 'https://ahkqnnvrmpvvwudyjrin.supabase.co';
+    const supabaseKey = 'sb_publishable_Y8MVDWUNrev1SXAZ8-vJhA_ZDmqDwgi'; 
+    const { createClient } = window.supabase;
+    const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+    // --- 2. ELEMENTS ---
+    const gameModal = document.getElementById('game-modal');
+    const authModal = document.getElementById('auth-modal');
+    const gameFrame = document.getElementById('game-frame');
+    const gameTitle = document.getElementById('game-title-text'); // NEW: Targets the window title
+    const saveIndicator = document.getElementById('save-indicator');
+    const oldLinkBtn = document.getElementById('old-link-btn');
+    let currentUser = null;
+
+    // --- 3. AUTHENTICATION ---
+    async function initAuth() {
+        const { data: { user } } = await supabaseClient.auth.getUser();
+        currentUser = user;
+        updateUI();
+    }
+
+    function openAuthModal() {
+        if(authModal) authModal.classList.add('active');
+    }
+    
+    function closeAuthModal() {
+        if(authModal) authModal.classList.remove('active');
+    }
+
+    function updateUI() {
+        const loginBtn = document.getElementById('main-login-btn');
+        
+        // 1. Update Game Save Status
+        if (currentUser) {
+            saveIndicator.innerHTML = '<i class="fa-solid fa-check-circle"></i> Cloud Saves Active';
+            saveIndicator.style.color = "var(--cg-green)";
+        } else {
+            saveIndicator.innerHTML = '<span style="cursor:pointer" onclick="openAuthModal()">⚠️ Not Logged In (Click)</span>';
+            saveIndicator.style.color = "var(--cg-orange)";
+        }
+
+        // 2. Update Header Button
+        if (loginBtn) {
+            if (currentUser) {
+                // Strip the fake email domain for display
+                let name = currentUser.email.replace('@macbooksuck.xyz', '');
+                loginBtn.innerHTML = `<i class="fa-solid fa-user-check"></i> ${name}`;
+                loginBtn.onclick = async () => {
+                    if(confirm("Log out?")) {
+                        await supabaseClient.auth.signOut();
+                        location.reload();
+                    }
+                };
+            } else {
+                loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> Login`;
+                loginBtn.onclick = openAuthModal;
+            }
+        }
+    }
+
+    // Google Login
+    async function signInWithGoogle() {
+        await supabaseClient.auth.signInWithOAuth({
+            provider: 'google',
+            options: { redirectTo: window.location.href }
+        });
+    }
+
+    // Custom Login
+    async function handleCustomLogin(type) {
+        const input = document.getElementById('auth-input').value.trim();
+        const password = document.getElementById('auth-password').value;
+        const errorBox = document.getElementById('auth-error');
+        if(errorBox) errorBox.style.display = 'none';
+
+        if (!input || !password) return alert("Please enter details");
+
+        // Automatically append fake domain if user just types a name
+        let email = input.includes('@') ? input : `${input}@macbooksuck.xyz`;
+        
+        let result = type === 'signup' 
+            ? await supabaseClient.auth.signUp({ email, password })
+            : await supabaseClient.auth.signInWithPassword({ email, password });
+
+        if (result.error) {
+            if(errorBox) {
+                errorBox.innerText = result.error.message;
+                errorBox.style.display = 'block';
+            } else { alert(result.error.message); }
+        } else {
+            location.reload();
+        }
+    }
+
+    initAuth();
+
+    // --- 4. GAME LOGIC ---
+    window.openGame = function(gamePath, oldLinkUrl = null) {
+        console.log("Opening:", gamePath);
+        gameModal.classList.add('active');
+        
+        // NEW: Set Title based on path (e.g., games/unity/bitplanes -> Bitplanes)
+        // This makes the window look like a real app
+        let name = gamePath.split('/').pop().replace(/-/g, ' ');
+        gameTitle.innerText = name.charAt(0).toUpperCase() + name.slice(1);
+
+        let finalUrl;
+        if (oldLinkUrl === null) {
+            // Old Repo Link
+            const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
+            finalUrl = `https://games.macbooksuck.xyz/${cleanPath}/index.html`;
+            oldLinkBtn.style.display = "none";
+        } else {
+            // New Repo Link (Local)
+            finalUrl = `${gamePath}/index.html`; 
+            oldLinkBtn.style.display = "flex";
+            oldLinkBtn.href = oldLinkUrl;
+        }
+
+        gameFrame.src = finalUrl;
+        
+        if (currentUser) {
+            setTimeout(() => loadCloudSave(gamePath), 1500);
+        }
+    };
+
+    window.closeGame = function() {
+        gameModal.classList.remove('active');
+        gameFrame.src = ""; // Stop game audio/logic
+    };
+
+    window.toggleFullscreen = function() {
+        const elem = document.getElementById('game-window-box');
+        if (!document.fullscreenElement) {
+            elem.requestFullscreen().catch(err => console.log(err));
+        } else {
+            document.exitFullscreen();
+        }
+    };
+
+    // --- 5. SEARCH & FILTERS ---
+    const searchBar = document.getElementById('searchBar');
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const gameCards = document.querySelectorAll('.game-card');
+
+    // Search Function
+    if(searchBar) {
+        searchBar.addEventListener('keyup', (e) => {
+            const term = e.target.value.toLowerCase();
+            gameCards.forEach(card => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                if (title.includes(term)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    }
+
+    // Category Filter
+    categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            categoryButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filter = btn.innerText.toLowerCase();
+            
+            gameCards.forEach(card => {
+                const tags = card.getAttribute('data-tags') || "";
+                if (filter === 'all' || tags.toLowerCase().includes(filter)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    });
+
+    // --- 6. CLOUD SAVE BRIDGE ---
+    window.addEventListener("message", async (event) => {
+        const allowed = ["macbooksuck.xyz", "localhost", "127.0.0.1"];
+        if (!allowed.some(d => event.origin.includes(d))) return;
+
+        // SAVE
+        if (event.data.type === "GAME_SAVE" && currentUser) {
+            console.log("Saving...", event.data.key);
+            const gameId = event.data.gameId || gameFrame.src.split('/').slice(-2)[0];
+
+            await supabaseClient.from('saves').upsert({ 
+                user_id: currentUser.id, 
+                game_path: gameId, 
+                save_json: { [event.data.key]: event.data.value }
+            }, { onConflict: 'user_id, game_path' });
+        }
+    });
+
+    async function loadCloudSave(pathKey) {
+        if (!currentUser) return;
+        const searchKey = pathKey.replace('https://', '').replace('games.macbooksuck.xyz/', '').replace(/\//g, '');
+        
+        const { data } = await supabaseClient
+            .from('saves')
+            .select('save_json')
+            .eq('user_id', currentUser.id)
+            .ilike('game_path', `%${searchKey}%`) 
+            .maybeSingle();
+
+        if (data && data.save_json) {
+            console.log("Loading Save...");
+            gameFrame.contentWindow.postMessage({
+                type: "LOAD_SAVE",
+                payload: data.save_json
+            }, "*");
+        }
+    }
+</script>
+    
+    <script>
+    document.querySelectorAll('.game-button').forEach(btn => {
+  const bg = btn.dataset.bg;
+  if (bg) {
+    btn.style.setProperty('--bg-url', `url(${bg})`);
+  }
+});
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".game-card[data-game-url]").forEach(card => {
+    card.addEventListener("mouseenter", () => {
+      const url = card.getAttribute("data-game-url");
+      if (!url || card.dataset.preloaded) return;
+
+      const iframe = document.createElement("iframe");
+      iframe.src = url;
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+
+      card.dataset.preloaded = "true";
+    });
+  });
+});
+    </script>
+<script>
+document.querySelector('.search-input').addEventListener('input', function(e) {
+  const query = e.target.value.toLowerCase();
+  document.querySelectorAll('.game-card').forEach(card => {
+    const title = card.querySelector('.game-title')?.textContent.toLowerCase() || '';
+    card.style.display = title.includes(query) ? 'block' : 'none';
+  });
+});
+
+function showEmulators() {
+  document.getElementById('navEmulators').classList.add('active');
+  document.getElementById('navHome').classList.remove('active');
+  document.getElementById('navHorror').classList.remove('active');
+  document.getElementById('navNew').classList.remove('active');
+
+  document.querySelectorAll('.game-card').forEach(card => {
+    card.style.display = 'none';
+  });
+  document.querySelectorAll('.emulator-card').forEach(card => {
+    card.style.display = 'block';
+  });
+}
+
+function showHorror() {
+  document.getElementById('navHorror').classList.add('active');
+  document.getElementById('navHome').classList.remove('active');
+  document.getElementById('navEmulators').classList.remove('active');
+  document.getElementById('navNew').classList.remove('active');
+
+  document.querySelectorAll('.game-card').forEach(card => {
+    card.style.display = 'none';
+  });
+  document.querySelectorAll('.horror-card').forEach(card => {
+    card.style.display = 'block';
+  });
+}
+
+function showNewGames() {
+  document.getElementById('navNew').classList.add('active');
+  document.getElementById('navHome').classList.remove('active');
+  document.getElementById('navEmulators').classList.remove('active');
+  document.getElementById('navHorror').classList.remove('active');
+
+  document.querySelectorAll('.game-card').forEach(card => {
+    card.style.display = 'none';
+  });
+  document.querySelectorAll('.new-card').forEach(card => {
+    card.style.display = 'block';
+  });
+}
+
+function showHome() {
+  document.getElementById('navHome').classList.add('active');
+  document.getElementById('navEmulators').classList.remove('active');
+  document.getElementById('navHorror').classList.remove('active');
+  document.getElementById('navNew').classList.remove('active');
+
+  document.querySelectorAll('.game-card').forEach(card => {
+    if (!card.classList.contains('emulator-card') &&
+        !card.classList.contains('horror-card') &&
+        !card.classList.contains('new-card')) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+<script>
+let idleDuration = 20 * 60 * 1000; // default 20 minutes
+
+function toggleSettings() {
+  const dropdown = document.getElementById('settingsDropdown');
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+function applySettings() {
+  const newTitle = document.getElementById('titleInput').value;
+  const newFavicon = document.getElementById('faviconInput').value;
+  const idleTime = document.getElementById('idleTimeInput').value;
+  const idleImage = document.getElementById('idleImageInput').value;
+
+  if (newTitle) {
+    document.title = newTitle;
+    localStorage.setItem('customTitle', newTitle);
+  }
+
+  if (newFavicon) {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = newFavicon;
+    localStorage.setItem('customFavicon', newFavicon);
+  }
+
+  if (idleTime) {
+    localStorage.setItem('customIdleTime', idleTime);
+    idleDuration = parseInt(idleTime) * 60 * 1000;
+  }
+
+  if (idleImage) {
+    localStorage.setItem('customIdleImage', idleImage);
+    const idleOverlayImg = document.querySelector('#idleOverlay img');
+    if (idleOverlayImg) idleOverlayImg.src = idleImage;
+  }
+}
+
+function resetSettings() {
+  localStorage.removeItem('customTitle');
+  localStorage.removeItem('customFavicon');
+  localStorage.removeItem('customIdleTime');
+  localStorage.removeItem('customIdleImage');
+  location.reload();
+}
+
+window.addEventListener('load', () => {
+  const savedTitle = localStorage.getItem('customTitle');
+  const savedFavicon = localStorage.getItem('customFavicon');
+  const savedIdleTime = localStorage.getItem('customIdleTime');
+  const savedIdleImage = localStorage.getItem('customIdleImage');
+
+  if (savedTitle) {
+    document.title = savedTitle;
+    document.getElementById('titleInput').value = savedTitle;
+  }
+
+  if (savedFavicon) {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = savedFavicon;
+    document.getElementById('faviconInput').value = savedFavicon;
+  }
+
+  if (savedIdleTime) {
+    document.getElementById('idleTimeInput').value = savedIdleTime;
+    idleDuration = parseInt(savedIdleTime) * 60 * 1000;
+  }
+
+  if (savedIdleImage) {
+    document.getElementById('idleImageInput').value = savedIdleImage;
+    const idleOverlayImg = document.querySelector('#idleOverlay img');
+    if (idleOverlayImg) idleOverlayImg.src = savedIdleImage;
+  }
+});
+</script>
+<script>
+function toggleSettings() {
+  const dropdown = document.getElementById("settingsDropdown");
+  // Toggle between 'block' and 'none'
+  if (dropdown.style.display === "block") {
+    dropdown.style.display = "none";
+  } else {
+    dropdown.style.display = "block";
+  }
+}
+</script>
+    
+<script src="javascript/notification.js"></script>   
+<script src="javascript/banner.js"></script>    
+    
+</body>
+</html>
