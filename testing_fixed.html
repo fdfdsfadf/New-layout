@@ -1885,34 +1885,31 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
 
 <div id="game-modal" class="modal-overlay">
     <div class="game-window" id="game-window-box">
-        <div class="window-header">
-            <div class="window-controls">
-                <button class="btn-control red" onclick="closeGame()"></button>
-                <button class="btn-control yellow" onclick="toggleFullscreen()"></button>
-                <button class="btn-control green"></button> </div>
-            <span class="window-title" id="game-title-text">Playing Game</span>
+        
+        <div class="window-bar">
+            <div style="display:flex; gap:15px; align-items:center;">
+                <div id="save-indicator" class="save-status">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    Cloud Save Active
+                </div>
+                
+                <a id="old-link-btn" href="#" target="_blank" style="display:none; color:#ff6b35; font-size:0.8rem; text-decoration:none; border:1px solid #ff6b35; padding:4px 8px; border-radius:4px;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Restore Old Saves
+                </a>
+            </div>
             
-            <div id="save-indicator" class="save-status">
-                <i class="fa-solid fa-cloud"></i> Checking...
+            <div class="window-controls">
+                <button class="btn-control" onclick="toggleFullscreen()">
+                    <i class="fa-solid fa-expand"></i> Fullscreen
+                </button>
+                <button class="btn-control btn-close" onclick="closeGame()">
+                    <i class="fa-solid fa-xmark"></i> Close
+                </button>
             </div>
         </div>
 
         <div class="iframe-container">
             <iframe id="game-frame" src="" allowfullscreen="true" scrolling="no"></iframe>
-        </div>
-
-        <div class="window-footer">
-            <button class="footer-btn" onclick="toggleFullscreen()">
-                <i class="fa-solid fa-expand"></i> Fullscreen
-            </button>
-            
-            <a id="old-link-btn" href="#" target="_blank" class="footer-btn" style="display:none; color: var(--cg-orange);">
-                <i class="fa-solid fa-triangle-exclamation"></i> Restore Old Saves
-            </a>
-
-            <button class="footer-btn" onclick="closeGame()">
-                <i class="fa-solid fa-xmark"></i> Close
-            </button>
         </div>
     </div>
 </div>
@@ -1932,7 +1929,12 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         </div>
 
         <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 15px; width: 100%;">
-            <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Or use Google</p>
+            <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Partner Login</p>
+            
+            <button class="login-btn" id="guahh-login-btn" style="width: 100%; background: #FF4500; margin-bottom: 10px;">
+                <i class="fa-solid fa-fire"></i> Sign in with Guahh
+            </button>
+
             <button class="login-btn" style="width: 100%; background: #4285F4;" onclick="signInWithGoogle()">
                 <i class="fa-brands fa-google"></i> Sign in with Google
             </button>
@@ -2162,6 +2164,13 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
             }, "*");
         }
     }
+
+async function signInWithGuahh() {
+    await supabaseClient.auth.signInWithOAuth({
+        provider: 'oidc', // OpenID Connect
+        options: { redirectTo: window.location.href }
+    });
+}
 </script>
     
     <script>
@@ -2189,13 +2198,70 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
   });
 });
 
-async function signInWithGuahh() {
-    await supabaseClient.auth.signInWithOAuth({
-        provider: 'oidc', // OpenID Connect
-        options: { redirectTo: window.location.href }
-    });
-}
     </script>
+<script>
+// --- GUAHH LOGIN LOGIC ---
+
+window.addEventListener('load', () => {
+    // Check if the API loaded correctly
+    if (typeof GuahhAuthAPI !== 'undefined') {
+        
+        // 1. Wire up the button
+        const guahhBtn = document.getElementById('guahh-login-btn');
+        if(guahhBtn) {
+            guahhBtn.addEventListener('click', () => {
+                // FIXED: The function is named 'showLogin', not 'login'
+                GuahhAuthAPI.showLogin({
+                    serviceName: "MacBookSuck",
+                    onSuccess: (user) => {
+                        console.log("Logged in!", user);
+                        // Optional: You can reload or just update UI
+                    }
+                }); 
+            });
+        }
+
+        // 2. Check if user is already logged in on load
+        GuahhAuthAPI.onReady(() => {
+            const guahhUser = GuahhAuthAPI.getCurrentUser();
+            if (guahhUser) {
+                console.log("Logged in with Guahh:", guahhUser.displayName);
+                updateUIForGuahh(guahhUser);
+            }
+        });
+
+        // 3. Listen for login events (happens after popup closes)
+        GuahhAuthAPI.onLogin((user) => {
+            updateUIForGuahh(user);
+            closeAuthModal();
+        });
+
+        // 4. Listen for logout
+        GuahhAuthAPI.onLogout(() => {
+            location.reload(); 
+        });
+    }
+});
+
+// Helper to update your site's header
+function updateUIForGuahh(user) {
+    // FIXED: Changed selector to match your actual button ID 'main-login-btn'
+    const loginBtn = document.getElementById('main-login-btn'); 
+    
+    if (loginBtn) {
+        // Change button to show their Guahh Name
+        loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> ${user.displayName}`;
+        
+        // Clicking it logs them out
+        loginBtn.onclick = () => {
+            if(confirm("Log out of Guahh?")) {
+                GuahhAuthAPI.logout();
+            }
+        };
+    }
+}
+</script>
+
 <script>
 document.querySelector('.search-input').addEventListener('input', function(e) {
   const query = e.target.value.toLowerCase();
@@ -2363,6 +2429,8 @@ function toggleSettings() {
     
 <script src="javascript/notification.js"></script>   
 <script src="javascript/banner.js"></script>    
-    
+<script src="https://raw.githubusercontent.com/guahhinc/fire/main/guahh-auth.js"></script>
+<script src="guahh-auth-api.js"></script>    
+
 </body>
 </html>
