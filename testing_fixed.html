@@ -1931,8 +1931,9 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 15px; width: 100%;">
             <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Partner Login</p>
             
-            <button class="login-btn" id="guahh-login-btn" style="width: 100%; background: #FF4500; margin-bottom: 10px;">
-                <i class="fa-solid fa-fire"></i> Sign in with Guahh
+            <button class="login-btn" id="guahh-login-btn" style="width: 100%; background: #ffffff; color: #000; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
+                <img src="https://raw.githubusercontent.com/guahhinc/kangaroo/main/guahh_white.png" alt="Guahh" style="height: 20px; width: auto; filter: invert(1);"> 
+                <span>Sign in with Guahh</span>
             </button>
 
             <button class="login-btn" style="width: 100%; background: #4285F4;" onclick="signInWithGoogle()">
@@ -2203,25 +2204,28 @@ async function signInWithGuahh() {
 // --- GUAHH LOGIN LOGIC ---
 
 window.addEventListener('load', () => {
-    // Check if the API loaded correctly
-    if (typeof GuahhAuthAPI !== 'undefined') {
-        
-        // 1. Wire up the button
+    // 1. Wait for the API object to exist
+    const checkApiInterval = setInterval(() => {
+        if (typeof GuahhAuthAPI !== 'undefined') {
+            clearInterval(checkApiInterval);
+            initGuahhLogic();
+        }
+    }, 100);
+
+    function initGuahhLogic() {
+        console.log("✅ Guahh API Loaded");
+
+        // Wire up the button
         const guahhBtn = document.getElementById('guahh-login-btn');
         if(guahhBtn) {
             guahhBtn.addEventListener('click', () => {
-                // FIXED: The function is named 'showLogin', not 'login'
-                GuahhAuthAPI.showLogin({
-                    serviceName: "MacBookSuck",
-                    onSuccess: (user) => {
-                        console.log("Logged in!", user);
-                        // Optional: You can reload or just update UI
-                    }
-                }); 
+                console.log("🔥 Guahh Button Clicked");
+                // CORRECT FUNCTION IS .login(), NOT .showLogin()
+                GuahhAuthAPI.login(); 
             });
         }
 
-        // 2. Check if user is already logged in on load
+        // Check if already logged in
         GuahhAuthAPI.onReady(() => {
             const guahhUser = GuahhAuthAPI.getCurrentUser();
             if (guahhUser) {
@@ -2230,13 +2234,14 @@ window.addEventListener('load', () => {
             }
         });
 
-        // 3. Listen for login events (happens after popup closes)
+        // Listen for successful login
         GuahhAuthAPI.onLogin((user) => {
+            console.log("User Logged In:", user);
             updateUIForGuahh(user);
             closeAuthModal();
         });
 
-        // 4. Listen for logout
+        // Listen for logout
         GuahhAuthAPI.onLogout(() => {
             location.reload(); 
         });
@@ -2245,14 +2250,13 @@ window.addEventListener('load', () => {
 
 // Helper to update your site's header
 function updateUIForGuahh(user) {
-    // FIXED: Changed selector to match your actual button ID 'main-login-btn'
     const loginBtn = document.getElementById('main-login-btn'); 
     
     if (loginBtn) {
-        // Change button to show their Guahh Name
+        // Show Name
         loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> ${user.displayName}`;
         
-        // Clicking it logs them out
+        // Clicking header button logs them out
         loginBtn.onclick = () => {
             if(confirm("Log out of Guahh?")) {
                 GuahhAuthAPI.logout();
