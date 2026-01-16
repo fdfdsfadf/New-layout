@@ -2215,15 +2215,11 @@ window.addEventListener('load', () => {
     function initGuahhLogic() {
         console.log("✅ Guahh API Loaded");
 
-        // Wire up the button
-        const guahhBtn = document.getElementById('guahh-login-btn');
-        if(guahhBtn) {
-            guahhBtn.addEventListener('click', () => {
-                console.log("🔥 Guahh Button Clicked");
-                // CORRECT FUNCTION IS .login(), NOT .showLogin()
-                GuahhAuthAPI.login(); 
-            });
-        }
+        // Use the built-in helper to bind the button
+        // This handles the click event and calling showLogin for you
+        GuahhAuthAPI.bindLoginButton('guahh-login-btn', {
+            serviceName: 'MacBookSuck'
+        });
 
         // Check if already logged in
         GuahhAuthAPI.onReady(() => {
