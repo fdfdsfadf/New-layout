@@ -2045,29 +2045,77 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
 
     initAuth();
 
+// Add this inside your Login function (for both Google and Guahh)
+async function updateProfile(user) {
+    const { error } = await supabase
+        .from('profiles')
+        .upsert({ 
+            user_id: user.id, 
+            display_name: user.displayName || user.email,
+            last_login: new Date()
+        });
+}
+
+// Function to check if the current user is banned
+async function checkBanStatus(user) {
+    console.log("Checking ban status for:", user.id);
+    
+    const { data, error } = await supabase
+        .from('banned_users')
+        .select('*')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+    if (data) {
+        // USER IS BANNED
+        alert(`🚫 YOU ARE BANNED 🚫\nReason: ${data.reason || "Violation of rules."}`);
+        
+        // Force Logout immediately
+        if (typeof GuahhAuthAPI !== 'undefined') GuahhAuthAPI.logout();
+        // If using Supabase/Google auth:
+        // await supabase.auth.signOut();
+        
+        location.reload(); // Refresh page to clear state
+        return true; // Return true so we know to stop loading games
+    }
+    return false; // Not banned
+}
+
     // --- 4. GAME LOGIC ---
-    window.openGame = function(gamePath, oldLinkUrl = null) {
+window.openGame = function(gamePath, oldLinkUrl = null) {
         console.log("Opening:", gamePath);
         gameModal.classList.add('active');
         
-        // NEW: Set Title based on path (e.g., games/unity/bitplanes -> Bitplanes)
-        // This makes the window look like a real app
         let name = gamePath.split('/').pop().replace(/-/g, ' ');
-        gameTitle.innerText = name.charAt(0).toUpperCase() + name.slice(1);
+        if(gameTitle) gameTitle.innerText = name.charAt(0).toUpperCase() + name.slice(1);
 
         let finalUrl;
+
         if (oldLinkUrl === null) {
-            // Old Repo Link
+            // CASE 1: Standard Game (1 Argument)
+            // Default behavior: Load from the GAMES subdomain
+            // Example: games/stickman -> https://games.macbooksuck.xyz/games/stickman/index.html
             const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
             finalUrl = `https://games.macbooksuck.xyz/${cleanPath}/index.html`;
-            oldLinkBtn.style.display = "none";
+            
+            // Hide the restore button
+            if(oldLinkBtn) oldLinkBtn.style.display = "none";
+        
         } else {
-            // New Repo Link (Local)
-            finalUrl = `${gamePath}/index.html`; 
-            oldLinkBtn.style.display = "flex";
-            oldLinkBtn.href = oldLinkUrl;
+            // CASE 2: Unity/Migrated Game (2 Arguments)
+            // Behavior: Load from LOCAL (Main1) and show restore button
+            // Example: games/bit-planes -> /games/bit-planes/index.html
+            const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
+            finalUrl = `${cleanPath}/index.html`; 
+            
+            // Show the restore button pointing to the old subdomain link
+            if(oldLinkBtn) {
+                oldLinkBtn.style.display = "flex";
+                oldLinkBtn.href = oldLinkUrl;
+            }
         }
 
+        console.log("Loading URL:", finalUrl);
         gameFrame.src = finalUrl;
         
         if (currentUser) {
@@ -2260,6 +2308,17 @@ function updateUIForGuahh(user) {
         };
     }
 }
+GuahhAuthAPI.onLogin(async (user) => {
+    // 1. Check if banned FIRST
+    const isBanned = await checkBanStatus(user);
+    if (isBanned) return; // Stop here if banned
+
+    // 2. If not banned, proceed...
+    console.log("User Logged In:", user);
+    updateProfile(user); // Sync name to Supabase
+    updateUIForGuahh(user);
+    closeAuthModal();
+});
 </script>
 
 <script>
