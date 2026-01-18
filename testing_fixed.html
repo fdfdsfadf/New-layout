@@ -2249,76 +2249,107 @@ async function signInWithGuahh() {
 
     </script>
 <script>
-// --- GUAHH LOGIN LOGIC ---
+// --- MODERATION & LOGIN LOGIC ---
 
+// 1. Wait for Guahh API to be ready
 window.addEventListener('load', () => {
-    // 1. Wait for the API object to exist
-    const checkApiInterval = setInterval(() => {
+    const checkApi = setInterval(() => {
         if (typeof GuahhAuthAPI !== 'undefined') {
-            clearInterval(checkApiInterval);
-            initGuahhLogic();
+            clearInterval(checkApi);
+            initGuahhSystem();
         }
-    }, 100);
-
-    function initGuahhLogic() {
-        console.log("✅ Guahh API Loaded");
-
-        // Use the built-in helper to bind the button
-        // This handles the click event and calling showLogin for you
-        GuahhAuthAPI.bindLoginButton('guahh-login-btn', {
-            serviceName: 'MacBookSuck'
-        });
-
-        // Check if already logged in
-        GuahhAuthAPI.onReady(() => {
-            const guahhUser = GuahhAuthAPI.getCurrentUser();
-            if (guahhUser) {
-                console.log("Logged in with Guahh:", guahhUser.displayName);
-                updateUIForGuahh(guahhUser);
-            }
-        });
-
-        // Listen for successful login
-        GuahhAuthAPI.onLogin((user) => {
-            console.log("User Logged In:", user);
-            updateUIForGuahh(user);
-            closeAuthModal();
-        });
-
-        // Listen for logout
-        GuahhAuthAPI.onLogout(() => {
-            location.reload(); 
-        });
-    }
+    }, 200);
 });
 
-// Helper to update your site's header
-function updateUIForGuahh(user) {
-    const loginBtn = document.getElementById('main-login-btn'); 
-    
-    if (loginBtn) {
-        // Show Name
-        loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> ${user.displayName}`;
+function initGuahhSystem() {
+    console.log("✅ Guahh System Initialized");
+
+    // Bind the Login Button
+    GuahhAuthAPI.bindLoginButton('guahh-login-btn', {
+        serviceName: 'MacBookSuck'
+    });
+
+    // Handle Login Event
+    GuahhAuthAPI.onLogin(async (user) => {
+        console.log("User attempting login:", user.userId);
+
+        // A. Check Ban Status FIRST
+        const isBanned = await checkBanStatus(user.userId);
+        if (isBanned) return; // Stop if banned
+
+        // B. Update Profile & UI
+        await updateProfile(user);
+        updateUIForGuahh(user);
+        closeAuthModal();
+    });
+
+    // Handle Auto-Login on Page Load
+    GuahhAuthAPI.onReady(async () => {
+        const user = GuahhAuthAPI.getCurrentUser();
+        if (user) {
+            const isBanned = await checkBanStatus(user.userId);
+            if (!isBanned) {
+                updateUIForGuahh(user);
+            }
+        }
+    });
+}
+
+// --- HELPER FUNCTIONS ---
+
+async function checkBanStatus(idToCheck) {
+    // Note: We use 'supabaseClient' (defined in your main script), not 'supabase'
+    const { data, error } = await supabaseClient
+        .from('banned_users')
+        .select('reason')
+        .eq('user_id', idToCheck)
+        .maybeSingle();
+
+    if (data) {
+        // User is BANNED
+        console.error("🚫 USER BANNED:", data.reason);
+        alert(`ACCESS DENIED\n\nYou are banned from this platform.\nReason: ${data.reason}`);
         
-        // Clicking header button logs them out
+        // Force Logout
+        GuahhAuthAPI.logout(); 
+        location.reload(); 
+        return true;
+    }
+    return false;
+}
+
+async function updateProfile(user) {
+    // Save their nickname to the database
+    await supabaseClient
+        .from('profiles')
+        .upsert({ 
+            user_id: user.userId, 
+            display_name: user.displayName || "Unknown Player",
+            last_login: new Date()
+        });
+}
+
+function updateUIForGuahh(user) {
+    const loginBtn = document.getElementById('main-login-btn');
+    if (loginBtn) {
+        loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> ${user.displayName}`;
         loginBtn.onclick = () => {
-            if(confirm("Log out of Guahh?")) {
-                GuahhAuthAPI.logout();
+            if(confirm("Log out?")) {
+                GuahhAuthAPI.logout(() => location.reload());
             }
         };
     }
+    
+    // Set the global currentUser variable so game saves work
+    // We create a fake "Supabase-like" user object for compatibility
+    currentUser = {
+        id: user.userId,
+        email: user.username + "@guahh.net" // Fake email for display
+    };
+    
+    // Refresh the save indicator
+    if(typeof updateUI === "function") updateUI();
 }
-GuahhAuthAPI.onLogin(async (user) => {
-    // 1. Check if banned FIRST
-    const isBanned = await checkBanStatus(user);
-    if (isBanned) return; // Stop here if banned
-
-    // 2. If not banned, proceed...
-    console.log("User Logged In:", user);
-    updateProfile(user); // Sync name to Supabase
-    updateUIForGuahh(user);
-    closeAuthModal();
-});
 </script>
 
 <script>
