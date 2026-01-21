@@ -2251,7 +2251,6 @@ async function signInWithGuahh() {
 <script>
 // --- MODERATION & LOGIN LOGIC ---
 
-// 1. Wait for Guahh API to be ready
 window.addEventListener('load', () => {
     const checkApi = setInterval(() => {
         if (typeof GuahhAuthAPI !== 'undefined') {
@@ -2264,33 +2263,40 @@ window.addEventListener('load', () => {
 function initGuahhSystem() {
     console.log("✅ Guahh System Initialized");
 
-    // Bind the Login Button
+    // 1. Bind the Login Button
     GuahhAuthAPI.bindLoginButton('guahh-login-btn', {
         serviceName: 'MacBookSuck'
     });
 
-    // Handle Login Event
+    // 2. Handle New Login (Button Click)
     GuahhAuthAPI.onLogin(async (user) => {
         console.log("User attempting login:", user.userId);
-
-        // A. Check Ban Status FIRST
+        
+        // Check Ban
         const isBanned = await checkBanStatus(user.userId);
-        if (isBanned) return; // Stop if banned
+        if (isBanned) return; 
 
-        // B. Update Profile & UI
+        // Sync Profile to Database
         await updateProfile(user);
+        
         updateUIForGuahh(user);
         closeAuthModal();
     });
 
-    // Handle Auto-Login on Page Load
+    // 3. Handle Auto-Login (Page Refresh)
     GuahhAuthAPI.onReady(async () => {
         const user = GuahhAuthAPI.getCurrentUser();
         if (user) {
+            console.log("Guahh Auto-Login:", user.userId);
+            
+            // Check Ban
             const isBanned = await checkBanStatus(user.userId);
-            if (!isBanned) {
-                updateUIForGuahh(user);
-            }
+            if (isBanned) return;
+
+            // Sync Profile (Ensures they appear in your table)
+            await updateProfile(user);
+            
+            updateUIForGuahh(user);
         }
     });
 }
@@ -2298,7 +2304,7 @@ function initGuahhSystem() {
 // --- HELPER FUNCTIONS ---
 
 async function checkBanStatus(idToCheck) {
-    // Note: We use 'supabaseClient' (defined in your main script), not 'supabase'
+    // Note: We use 'supabaseClient' defined in your main script
     const { data, error } = await supabaseClient
         .from('banned_users')
         .select('reason')
@@ -2306,11 +2312,8 @@ async function checkBanStatus(idToCheck) {
         .maybeSingle();
 
     if (data) {
-        // User is BANNED
         console.error("🚫 USER BANNED:", data.reason);
         alert(`ACCESS DENIED\n\nYou are banned from this platform.\nReason: ${data.reason}`);
-        
-        // Force Logout
         GuahhAuthAPI.logout(); 
         location.reload(); 
         return true;
@@ -2319,14 +2322,18 @@ async function checkBanStatus(idToCheck) {
 }
 
 async function updateProfile(user) {
-    // Save their nickname to the database
-    await supabaseClient
+    // This sends the Guahh ID to your 'profiles' table
+    console.log("Syncing profile for:", user.userId);
+    const { error } = await supabaseClient
         .from('profiles')
         .upsert({ 
             user_id: user.userId, 
             display_name: user.displayName || "Unknown Player",
             last_login: new Date()
         });
+        
+    if (error) console.error("Profile Sync Error:", error);
+    else console.log("Profile Synced Successfully");
 }
 
 function updateUIForGuahh(user) {
@@ -2341,13 +2348,12 @@ function updateUIForGuahh(user) {
     }
     
     // Set the global currentUser variable so game saves work
-    // We create a fake "Supabase-like" user object for compatibility
     currentUser = {
         id: user.userId,
-        email: user.username + "@guahh.net" // Fake email for display
+        email: user.username + "@guahh.net" 
     };
     
-    // Refresh the save indicator
+    // Refresh the save indicator (Green Cloud Icon)
     if(typeof updateUI === "function") updateUI();
 }
 </script>
