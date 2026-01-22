@@ -1965,6 +1965,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
 
     // --- 3. AUTHENTICATION ---
 // --- 3. AUTHENTICATION (Updated for Bans & Profiles) ---
+// --- 3. AUTHENTICATION (Fixed to Save Profiles) ---
     async function initAuth() {
         // 1. Get the current Google/Supabase user
         const { data: { user } } = await supabaseClient.auth.getUser();
@@ -1972,23 +1973,31 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         if (user) {
             console.log("Supabase User Detected:", user.id);
 
-            // 2. CHECK BAN STATUS (Add this!)
+            // --- STEP A: CHECK IF BANNED ---
             const isBanned = await checkBanStatus(user.id);
             if (isBanned) {
-                await supabaseClient.auth.signOut(); // Force logout if banned
+                await supabaseClient.auth.signOut(); 
                 return; 
             }
 
-            // 3. SYNC PROFILE (Add this!)
-            // This ensures they appear in your 'profiles' table
-            await supabaseClient.from('profiles').upsert({ 
+            // --- STEP B: SAVE TO PROFILES TABLE ---
+            // This is the part that was missing! 
+            const { error } = await supabaseClient.from('profiles').upsert({ 
                 user_id: user.id, 
-                display_name: user.email.split('@')[0], // Use email prefix as name
+                display_name: user.email.split('@')[0], // Uses email name
                 last_login: new Date()
             });
 
+            if (error) {
+                console.error("Error creating profile:", error);
+            } else {
+                console.log("Profile successfully saved to database!");
+            }
+
+            // --- STEP C: UPDATE UI ---
             currentUser = user;
             updateUI();
+            loadGameSave(); 
         }
     }
 
