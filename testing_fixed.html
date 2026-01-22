@@ -1964,8 +1964,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
     let currentUser = null;
 
     // --- 3. AUTHENTICATION ---
-// --- 3. AUTHENTICATION (Updated for Bans & Profiles) ---
-// --- 3. AUTHENTICATION (Fixed to Save Profiles) ---
+// --- 3. AUTHENTICATION (Fixed: Prevents Duplicate Key Error) ---
     async function initAuth() {
         // 1. Get the current Google/Supabase user
         const { data: { user } } = await supabaseClient.auth.getUser();
@@ -1981,12 +1980,15 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
             }
 
             // --- STEP B: SAVE TO PROFILES TABLE ---
-            // This is the part that was missing! 
-            const { error } = await supabaseClient.from('profiles').upsert({ 
-                user_id: user.id, 
-                display_name: user.email.split('@')[0], // Uses email name
-                last_login: new Date()
-            });
+            // FIX: Added { onConflict: 'user_id' } to prevent duplicate errors
+            const { error } = await supabaseClient.from('profiles').upsert(
+                { 
+                    user_id: user.id, 
+                    display_name: user.email.split('@')[0], 
+                    last_login: new Date()
+                },
+                { onConflict: 'user_id' }  // <--- THIS IS THE MAGIC FIX
+            );
 
             if (error) {
                 console.error("Error creating profile:", error);
