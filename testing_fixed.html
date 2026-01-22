@@ -145,7 +145,7 @@ padding:10px; border-radius:15px; z-index:9999;">
     Your browser doesn't support audio.
   </audio>
 </div>
-<div id="idleOverlay" style="display:none; position:fixed; top:0;
+<div id="idleOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; z-index:9999999;">
 left:0; width:100vw; height:100vh; background:#000; z-index:99999;">
   <img src="assets/img/Drawing-29.sketchpad.png" alt="Idle Cover" style="width:100%; height:100%; object-fit:cover;">
   
@@ -2126,6 +2126,9 @@ window.openGame = function(gamePath, oldLinkUrl = null) {
     window.closeGame = function() {
         gameModal.classList.remove('active');
         gameFrame.src = ""; // Stop game audio/logic
+        
+        // FIX: Re-enable scrolling on the main page
+        document.body.style.overflow = ''; 
     };
 
     window.toggleFullscreen = function() {
