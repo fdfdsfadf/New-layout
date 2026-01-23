@@ -2376,10 +2376,19 @@ function updateUIForGuahh(user) {
     const loginBtn = document.getElementById('main-login-btn');
     if (loginBtn) {
         loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> ${user.displayName}`;
+        
+        // FIXED LOGOUT LOGIC
         loginBtn.onclick = () => {
-            if(confirm("Log out?")) {
-                GuahhAuthAPI.logout(() => location.reload());
-            }
+            if(!confirm("Are you sure you want to log out?")) return;
+            
+            // 1. Force Clear Guahh Data
+            localStorage.removeItem('guahh_user'); 
+            
+            // 2. Force Clear Supabase Data
+            supabaseClient.auth.signOut();
+            
+            // 3. Reload Page to reset everything
+            window.location.reload();
         };
     }
     
