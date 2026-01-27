@@ -1964,39 +1964,33 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
     let currentUser = null;
 
     // --- 3. AUTHENTICATION ---
-// --- 3. AUTHENTICATION (Fixed: Prevents Duplicate Key Error) ---
+// --- 3. AUTHENTICATION (Fixed: Prevents Red Error) ---
     async function initAuth() {
-        // 1. Get the current Google/Supabase user
         const { data: { user } } = await supabaseClient.auth.getUser();
         
         if (user) {
             console.log("Supabase User Detected:", user.id);
 
-            // --- STEP A: CHECK IF BANNED ---
+            // A. CHECK BAN STATUS
             const isBanned = await checkBanStatus(user.id);
             if (isBanned) {
                 await supabaseClient.auth.signOut(); 
                 return; 
             }
 
-            // --- STEP B: SAVE TO PROFILES TABLE ---
-            // FIX: Added { onConflict: 'user_id' } to prevent duplicate errors
+            // B. SAVE TO PROFILES (With Duplicate Fix)
             const { error } = await supabaseClient.from('profiles').upsert(
                 { 
                     user_id: user.id, 
                     display_name: user.email.split('@')[0], 
                     last_login: new Date()
                 },
-                { onConflict: 'user_id' }  // <--- THIS IS THE MAGIC FIX
+                { onConflict: 'user_id' }  // This stops the red error box
             );
 
-            if (error) {
-                console.error("Error creating profile:", error);
-            } else {
-                console.log("Profile successfully saved to database!");
-            }
+            if (error) console.error("Error creating profile:", error);
 
-            // --- STEP C: UPDATE UI ---
+            // C. UPDATE UI
             currentUser = user;
             updateUI();
             loadGameSave(); 
