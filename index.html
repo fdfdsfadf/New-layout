@@ -1958,6 +1958,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
     const saveIndicator = document.getElementById('save-indicator');
     const oldLinkBtn = document.getElementById('old-link-btn');
     let currentUser = null;
+    window.myGameInstance = null;
 
     // --- 3. AUTHENTICATION ---
 // --- 3. AUTHENTICATION (Fixed: Prevents Red Error) ---
@@ -2204,42 +2205,53 @@ window.openGame = function(gamePath, secondArg = null, isExternal = false) {
     });
 
     // --- 6. CLOUD SAVE BRIDGE ---
-    window.addEventListener("message", async (event) => {
-        const allowed = ["macbooksuck.xyz", "localhost", "127.0.0.1"];
-        if (!allowed.some(d => event.origin.includes(d))) return;
+window.addEventListener("message", async (event) => {
+    // Keep this security check!
+    const allowed = ["macbooksuck.xyz", "localhost", "127.0.0.1"];
+    if (!allowed.some(d => event.origin.includes(d))) return;
 
-        // SAVE
-        if (event.data.type === "GAME_SAVE" && currentUser) {
-            console.log("Saving...", event.data.key);
-            const gameId = event.data.gameId || gameFrame.src.split('/').slice(-2)[0];
-
-            await supabaseClient.from('saves').upsert({ 
-                user_id: currentUser.id, 
-                game_path: gameId, 
-                save_json: { [event.data.key]: event.data.value }
-            }, { onConflict: 'user_id, game_path' });
-        }
-    });
-
-    async function loadCloudSave(pathKey) {
-        if (!currentUser) return;
-        const searchKey = pathKey.replace('https://', '').replace('games.macbooksuck.xyz/', '').replace(/\//g, '');
+    if (event.data.type === "GAME_SAVE" && currentUser) {
+        console.log("Saving to Supabase:", event.data.key);
         
-        const { data } = await supabaseClient
+        const { error } = await supabaseClient
             .from('saves')
-            .select('save_json')
-            .eq('user_id', currentUser.id)
-            .ilike('game_path', `%${searchKey}%`) 
-            .maybeSingle();
+            .upsert({ 
+                user_id: currentUser.id, 
+                game_id: event.data.gameId, // Make sure column is 'game_id' in Supabase
+                save_data: { [event.data.key]: event.data.value } // Make sure column is 'save_data'
+            }, { onConflict: 'user_id, game_id' }); // Conflict must target these columns
 
-        if (data && data.save_json) {
-            console.log("Loading Save...");
-            gameFrame.contentWindow.postMessage({
-                type: "LOAD_SAVE",
-                payload: data.save_json
+        if (error) console.error("Save Error:", error);
+    }
+});
+
+async function loadCloudSave(gamePath) {
+    if (!currentUser) return;
+    
+    const { data, error } = await supabaseClient
+        .from('saves')
+        .select('save_data') // Column must be 'save_data'
+        .eq('user_id', currentUser.id)
+        .eq('game_id', gamePath)
+        .maybeSingle();
+
+    if (data && data.save_data) {
+        console.log("Save data found, loading...");
+
+        // If it's the Unity Engine
+        if (window.myGameInstance) {
+            window.myGameInstance.SendMessage('CloudSaveHandler', 'OnCloudDataReceived', JSON.stringify(data.save_data));
+        } 
+        
+        // If it's a regular HTML5 Iframe
+        if (gameFrame && gameFrame.contentWindow) {
+            gameFrame.contentWindow.postMessage({ 
+                type: "LOAD_SAVE", 
+                payload: data.save_data 
             }, "*");
         }
     }
+}
 
 async function signInWithGuahh() {
     await supabaseClient.auth.signInWithOAuth({
