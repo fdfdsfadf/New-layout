@@ -2206,22 +2206,23 @@ window.openGame = function(gamePath, secondArg = null, isExternal = false) {
 
     // --- 6. CLOUD SAVE BRIDGE ---
 window.addEventListener("message", async (event) => {
-    // Keep this security check!
+    // Keep this security check to prevent unauthorized database access
     const allowed = ["macbooksuck.xyz", "localhost", "127.0.0.1"];
     if (!allowed.some(d => event.origin.includes(d))) return;
 
     if (event.data.type === "GAME_SAVE" && currentUser) {
-        console.log("Saving to Supabase:", event.data.key);
+        console.log("Saving to Cloud:", event.data.key);
         
+        // Use game_id and save_data to match your new table structure
         const { error } = await supabaseClient
             .from('saves')
             .upsert({ 
                 user_id: currentUser.id, 
-                game_id: event.data.gameId, // Make sure column is 'game_id' in Supabase
-                save_data: { [event.data.key]: event.data.value } // Make sure column is 'save_data'
-            }, { onConflict: 'user_id, game_id' }); // Conflict must target these columns
+                game_id: event.data.gameId || currentGameId, 
+                save_data: { [event.data.key]: event.data.value } 
+            }, { onConflict: 'user_id, game_id' });
 
-        if (error) console.error("Save Error:", error);
+        if (error) console.error("Database Save Error:", error.message);
     }
 });
 
@@ -2230,20 +2231,20 @@ async function loadCloudSave(gamePath) {
     
     const { data, error } = await supabaseClient
         .from('saves')
-        .select('save_data') // Column must be 'save_data'
+        .select('save_data') // Must match the column name in Supabase
         .eq('user_id', currentUser.id)
         .eq('game_id', gamePath)
         .maybeSingle();
 
     if (data && data.save_data) {
-        console.log("Save data found, loading...");
+        console.log("Cloud save found for:", gamePath);
 
-        // If it's the Unity Engine
+        // For Unity games (Direct Engine Bridge)
         if (window.myGameInstance) {
             window.myGameInstance.SendMessage('CloudSaveHandler', 'OnCloudDataReceived', JSON.stringify(data.save_data));
         } 
         
-        // If it's a regular HTML5 Iframe
+        // For HTML5/Non-Unity games (Iframe Bridge)
         if (gameFrame && gameFrame.contentWindow) {
             gameFrame.contentWindow.postMessage({ 
                 type: "LOAD_SAVE", 
