@@ -815,12 +815,13 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <div class="badge hot">Horror</div>
                         </a>
 
-                        <div class="game-card" onclick="openGame('dante-external', 'https://macbooksuper.xyz/games/dante/index.html')" style="cursor: pointer;">
+                        <div class="game-card" onclick="openGame('games/dante', 'https://macbooksuper.xyz/games/dante/index.html', true)" style="cursor: pointer;">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
-                                <div class="game-title">Dante dif repo</div>
+                                <div class="game-title">Dante</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
+                            <div class="badge hot">Horror</div>
                         </div>
 
                         <div class="game-card" onclick="openGame('games/deathcario')" style="cursor: pointer;">
@@ -2126,7 +2127,7 @@ async function checkBanStatus(user) {
 }
 
     // --- 4. GAME LOGIC ---
-window.openGame = function(gamePath, oldLinkUrl = null) {
+window.openGame = function(gamePath, secondArg = null, isExternal = false) {
         console.log("Opening:", gamePath);
         gameModal.classList.add('active');
         
@@ -2135,28 +2136,29 @@ window.openGame = function(gamePath, oldLinkUrl = null) {
 
         let finalUrl;
 
-        if (oldLinkUrl === null) {
-            // CASE 1: Standard Game (1 Argument)
-            // Default behavior: Load from the GAMES subdomain
-            // Example: games/stickman -> https://games.macbooksuck.xyz/games/stickman/index.html
-            const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
-            finalUrl = `https://games.macbooksuck.xyz/${cleanPath}/index.html`;
-            
-            // Hide the restore button
+        // CASE 1: External Game (Dante, Billiards, etc.)
+        // Usage: openGame('my-id', 'https://url.com', true)
+        if (isExternal === true) {
+            finalUrl = secondArg;
             if(oldLinkBtn) oldLinkBtn.style.display = "none";
-        
-        } else {
-            // CASE 2: Unity/Migrated Game (2 Arguments)
-            // Behavior: Load from LOCAL (Main1) and show restore button
-            // Example: games/bit-planes -> /games/bit-planes/index.html
+        }
+        // CASE 2: Unity/Migrated Game (Local files + Restore Button)
+        // Usage: openGame('games/bit-planes', 'https://old-site.com')
+        else if (secondArg !== null) {
             const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
-            finalUrl = `${cleanPath}/index.html`; 
+            finalUrl = `${cleanPath}/index.html`; // Loads LOCALLY
             
-            // Show the restore button pointing to the old subdomain link
             if(oldLinkBtn) {
                 oldLinkBtn.style.display = "flex";
-                oldLinkBtn.href = oldLinkUrl;
+                oldLinkBtn.href = secondArg;
             }
+        }
+        // CASE 3: Standard Game (Default)
+        // Usage: openGame('games/stickman')
+        else {
+            const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
+            finalUrl = `https://games.macbooksuck.xyz/${cleanPath}/index.html`;
+            if(oldLinkBtn) oldLinkBtn.style.display = "none";
         }
 
         console.log("Loading URL:", finalUrl);
