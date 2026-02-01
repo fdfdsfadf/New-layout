@@ -145,7 +145,7 @@ padding:10px; border-radius:15px; z-index:9999;">
     Your browser doesn't support audio.
   </audio>
 </div>
-<div id="idleOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; z-index:9999999;">
+<div id="idleOverlay" style="display:none; position:fixed; top:0;
 left:0; width:100vw; height:100vh; background:#000; z-index:99999;">
   <img src="assets/img/Drawing-29.sketchpad.png" alt="Idle Cover" style="width:100%; height:100%; object-fit:cover;">
   
@@ -314,11 +314,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
   </div>
 </div>
 
-<div class="header-controls">
-    <button id="main-login-btn" class="login-btn" onclick="openAuthModal()">
-        <i class="fa-solid fa-user"></i> Login
-    </button>
-</div>
+
 
 
     
@@ -432,7 +428,7 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                 <div class="notif-inner">
                     <div class="notif-left">
                         <strong class="notif-title">Update</strong>
-                        <div class="notif-message">Removed DOOM</div>
+                        <div class="notif-message">4 new games to be added, fixed the google forms feedback link and more!</div>
                     </div>
                     <div class="notif-actions">
                         <button id="notifDetails" class="notif-btn">Details</button>
@@ -447,652 +443,649 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                 <section class="games-section">
                     <h2 class="section-title">Games <strong>macbooksuck</strong></h2>
                     <div class="games-grid">
-                        <div class="game-card" onclick="openGame('games/proxy')" style="cursor: pointer;">
+                        <a href="https://macbooksuck.xyz/games/proxy/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Proxy</div>
                                 <div class="game-subtitle">Click enter portal</div>
                             </div>
                             <div class="badge top-rated">Working(sorta)</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/bit-planes')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/bit-planes/" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/bit-planes.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">bitplanes</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/bit-planes-2')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/bit-planes-2" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">bitplanes 2 player</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge new">New</div>
-                          </div>
+                          </a>
 
-                        <div class="game-card" onclick="openGame('games/ElectronOS')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/ElectronOS/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">ElectronOS Emulator</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Hot</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/10-minutes-till-dawn', 'https://games.macbooksuck.xyz/games/10-minutes-till-dawn/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/10-minutes-till-dawn/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">10 Minutes Till Dawn</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                         </div>
+                         </a>
 
-                        <div class="game-card" onclick="openGame('games/99balls', 'https://macbooksuper.xyz/games/99balls/', true)" style="cursor: pointer;">
+                        <a href="https://macbooksuper.xyz/games/99balls/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">99 Balls</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                          </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/99nights', 'https://99nights.macbooksuck.xyz/')" style="cursor: pointer;">
+                        <a href="https://99nights.macbooksuck.xyz/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">99 Nights In The Forrest</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge new">New</div>
-                        </div>
-
+                          </a>
                         
-                        <div class="game-card" onclick="openGame('games/100ng')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/100ng/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">100 Player Pong</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Hot</div>
-                          </div>
+                          </a>
 
-                        <div class="game-card" onclick="openGame('games/2048')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/2048/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">2048</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge top-rated">Top rated</div>
-                        </div>
+                        </a>
                         
-                        <div class="game-card" onclick="openGame('games/achievementunlocked')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/achievementunlocked/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Achievement Unlocked</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/adarkroom')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/adarkroom/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">A Dark Room</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/ages-of-conflict', 'https://games.macbooksuck.xyz/games/ages-of-conflict/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/ages-of-conflict/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Ages Of Conflict</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/amazing-rope-police', 'https://games.macbooksuck.xyz/games/amazing-rope-police/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/amazing-rope-police/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Amazing Rope Police</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge top-rated">Top rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/arcadewizard', 'https://games.macbooksuck.xyz/games/arcadewizard/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/arcadewizard/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Arcade Wizard</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
                     
-                        <div class="game-card" onclick="openGame('games/avalanche')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/avalanche/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Avalanche</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/awesometanks2')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/awesometanks2/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Awesome Tanks 2</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
 
-                        <div class="game-card" onclick="openGame('games/untiy/backrooms-2d', 'https://games.macbooksuck.xyz/games/backrooms-2d/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/backrooms-2d/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Backrooms</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Horror</div>
-                        </div>
+                        </a>
 
 
-                        <div class="game-card" onclick="openGame('games/unity/baldis-basics', 'https://games.macbooksuck.xyz/games/baldis-basics/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/baldis-basics/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Baldis Basics</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/baldisbasicsfieldtripcampingremake', 'https://games.macbooksuck.xyz/games/baldisbasicsfieldtripcampingremake/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/baldisbasicsfieldtripcampingremake/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Baldis Basics Camping</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/basket-random')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/basket-random/" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/basket-random.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">Basket Random</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-
-                        <div class="game-card" onclick="openGame('games/billards', 'https://billards.macbooksuck.xyz/', true)" style="cursor: pointer;">
+                        <a href="https://billards.macbooksuck.xyz/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Billards/Pool</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge new">New</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/bitlife', 'https://games.macbooksuck.xyz/games/bitlife/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/bitlife/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Bitlife</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/block-blast', 'https://games.macbooksuck.xyz/games/block-blast/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/block-blast/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Block Blast</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge top-rated">Top rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/boxing-random')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/boxing-random/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Boxing Random</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/burger-and-frights')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/burger-and-frights/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Burger And Frights</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Horror</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/charrio-kart')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/charrio-kart/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Charrio Kart</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/cheesypuffclicker')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/cheesypuffclicker/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Cheesy Puff Clicker</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/chrome-dino')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/chrome-dino/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Chrome Dino</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Hot</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/circlo')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/circlo/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Circlo</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
                         
-                        <div class="game-card" onclick="openGame('games/unity/city-car-driving-stunt-master', 'https://city-car-driving-stunt-master1.macbooksuck.xyz/')" style="cursor: pointer;">
+                        <a href="https://city-car-driving-stunt-master1.macbooksuck.xyz/" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/city-car-stunt-master.jpg');"></div>
-                            <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">City Car Stunt Master</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/cluster', 'https://games.macbooksuck.xyz/games/cluster/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/cluster/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/cluster1.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">Cluster</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/connect3')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/connect3/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Connect 3</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/cookie-clicker')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/cookie-clicker/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Cookie Clicker</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/core-ball')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/core-ball/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Core Ball</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/crossyroad')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/crossyroad/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/crossy-road.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">CrossyRoad</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge top-rated">Top rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/csgo-clicker')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/csgo-clicker/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">CS:GO Clicker</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
                         
-                        <div class="game-card" onclick="openGame('games/ctr')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/ctr/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Cut the Rope</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/ctr-holiday')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/ctr-holiday/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Cut the Rope Holiday</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/ctr-tr')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/ctr-tr/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Cut the Rope Time Travel</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/cubefield')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/cubefield/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Cubefield</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
-
-                        <div class="game-card" onclick="openGame('games/dante', 'https://macbooksuper.xyz/games/dante/', true)" style="cursor: pointer;">
+                        </a>
+                  
+                        <a href="https://macbooksuper.xyz/games/dante/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Dante</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Horror</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/deathcario')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/deathcario/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Death Car IO</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/death-run-3d', 'https://games.macbooksuck.xyz/games/death-run-3d/')" style="cursor: pointer;">
-                            <div class="card-background blue-purple"></div>
-                            <div class="card-content">
-                                <div class="game-title">Death Run 3D</div>
-                                <div class="game-subtitle">Click to play</div>
-                            </div>
-                        </div>
-
-                        <div class="game-card" onclick="openGame('games/unity/deepest-sword', 'https://https://games.macbooksuck.xyz/games/deepest-sword/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/deepest-sword/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Deepest Sword</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Hot</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/DogeMiner')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/death-run-3d/index.html" class="game-card">
+                            <div class="card-background blue-purple"></div>
+                            <div class="card-content">
+                                <div class="game-title">Death Run 3D</div>
+                                <div class="game-subtitle">Click to play</div>
+                            </div>
+                        </a>
+
+                        <a href="https://games.macbooksuck.xyz/games/DogeMiner/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Dodge Miner</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/dragon-vs-bricks')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/dragon-vs-bricks/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Dragon VS Bricks</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/drive-mad')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/drive-mad/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Drive Mad</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge top-rated">Top rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/ducklife1')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/ducklife1/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Duck Life 1</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/ducklife2', 'https://games.macbooksuck.xyz/games/ducklife2/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/ducklife2/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Duck Life 2</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/ducklife3', 'https://games.macbooksuck.xyz/games/ducklife3/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/ducklife3/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Duck Life 3</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/ducklife4', 'https://duklife4.macbooksuck.xyz/')" style="cursor: pointer;">
+                        <a href="https://duklife4.macbooksuck.xyz/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Duck Life 4</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
                         
-                        <div class="game-card" onclick="openGame('games/edge-surf')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/edge-surf/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/edge-surf.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">Edge Surf</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/Epic%20Tower%20Defense')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/Epic%20Tower%20Defense/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Epic Tower Defence</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/Escape-Road-2')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/Escape-Road-2/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Escape Road 2</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Hot</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/Escape-Road-City-2')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/Escape-Road-City-2/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Escape Road City 2</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/evil-glitch')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/evil-glitch/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Evil Glitch</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/evolution', 'https://games.macbooksuck.xyz/games/evolution/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/evolution/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Evolution</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/exo')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/exo/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Exo</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/godot/fairsquares', 'https://games.macbooksuck.xyz/games/fairsquares/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/fairsquares/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Fair Squares</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/flappy-bird')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/flappy-bird/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/flappy-bird.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">Flappy Bird</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Hot</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/flashtetris')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/flashtetris/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Flash Tetris</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/fruitninja')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/fruitninja/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Fruit Ninja</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/game-inside', 'https://games.macbooksuck.xyz/games/game-inside/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/game-inside/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Game Inside a Game</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/geodash')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/geodash/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/geometry-dash.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">Geometry Dash (Scratch)</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/getting-over-it/GOI.html')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/getting-over-it/GOI.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Getting Over It (Scratch)</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/go-ball')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/go-ball/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Go Ball</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/google-feud')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/google-feud/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/google-feud.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">Google Feud</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/halfLife')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/halfLife/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Half Life 1</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/helios', 'https://games.macbooksuck.xyz/games/helios/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/helios/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Helios</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/hba')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/hba/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Hover Bot Arena</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/hextris')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/hextris/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Hextris</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/houseofhazards', 'https://games.macbooksuck.xyz/games/houseofhazards/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/houseofhazards/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">House Of Hazards</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/interactivebuddy')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/interactivebuddy/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Interactive Buddy</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/jelly-merge', 'https://games.macbooksuck.xyz/games/jelly-merge/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/jelly-merge/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Jelly Merge</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/jetpack-joyride')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/jetpack-joyride/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Jetpack Joyride</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/just-fall', 'https://games.macbooksuck.xyz/games/just-fall/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/just-fall/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Just Fall</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/godot/kitchen-gun-game', 'https://games.macbooksuck.xyz/games/kitchen-gun-game/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/kitchen-gun-game/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Kitchen Gun Game</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
                         <a href="https://riddle.macbooksuck.xyz/Learn-to-fly/1/" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/ltf.png');"></div>
@@ -1112,38 +1105,38 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <div class="badge new">New</div>
                         </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/madalin-stunt-cars-3', 'https://games.macbooksuck.xyz/games/madalin-stunt-cars-3/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/madalin-stunt-cars-3/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Madalin Stunt Cars 3</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/mario')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/mario/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Mario</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/minecraft-classic')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/minecraft-classic/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/minecraft_classic.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">Minecraft Class</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge top-rated">Top rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/miniputt')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/miniputt/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Mini-putt</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
                         <a href="https://games.macbooksuck.xyz/error" class="game-card">
                             <div class="card-background blue-purple"></div>
@@ -1154,118 +1147,110 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <div class="badge not-working">Not working</div>
                         </a>
 
-                        <div class="game-card" onclick="openGame('games/monster-tracks')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/monster-tracks/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Monster Tracks</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/n-gon')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/n-gon/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">n-gon</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/Ninja%20Dash')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/Ninja%20Dash/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Ninja Dash</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/pacman3d')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/pacman3d/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Pacman 3D</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/pandemic2')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/pandemic2/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Pandemic 3</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/paperio2', 'https://macbooksuper.xyz/games/paperio2/', true)" style="cursor: pointer;">
+                        <a href="https://macbooksuper.xyz/games/paperio2/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Paper.io 2</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/particle-clicker')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/particle-clicker/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Particle Clicker</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/pixel-gun-survival', 'https://games.macbooksuck.xyz/games/pixel-gun-survival/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/pixel-gun-survival/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Pixel Gun Survival</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/polytrack')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/polytrack/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/polytrack.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">Polytrack</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge top-rated">Top rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/Polygon%20Fusion')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/Polygon%20Fusion/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Polygon Fusion</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/portalflash')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/portalflash/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Portal (Flash)</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/RagdollArchers', 'https://games.macbooksuck.xyz/games/RagdollArchers/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/RagdollArchers/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Ragdoll Archers</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/red-laser', 'https://games.macbooksuck.xyz/games/red-laser')" style="cursor: pointer;">
-                            <div class="card-background blue-purple"></div>
-                            <div class="card-content">
-                                <div class="game-title">Red Laser</div>
-                                <div class="game-subtitle">Click to play</div>
-                            </div>
-                        </div>
-
-                        <div class="game-card" onclick="openGame('games/retro-bowl')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/retro-bowl/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Retro Bowl</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
                         <a href="https://riddle.macbooksuck.xyz/School/1/" class="game-card">
                             <div class="card-background blue-purple"></div>
@@ -1321,349 +1306,347 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <div class="badge new">New</div>
                         </a>
 
-                        <div class="game-card" onclick="openGame('games/rolly-vortex')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/rolly-vortex/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Rolly Vortex</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/rooftop-snipers', 'https://games.macbooksuck.xyz/games/rooftop-snipers/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/rooftop-snipers/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Roof-Top Snipers</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/sand-game')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/sand-game/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Sand Game</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/sandboxels')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/sandboxels/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Sandboxels</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Hot</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/santy-is-home', 'https://games.macbooksuck.xyz/games/santy-is-home/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/santy-is-home/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Santy Is Home</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Horror</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/scrapmetal', 'https://games.macbooksuck.xyz/games/scrapmetal/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/scrapmetal/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Scrap Metal</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/slope', 'https://games.macbooksuck.xyz/games/slope/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/slope/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/slope.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">Slope</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge top-rated">Top rated</div>
-                        </div>
+                        </a>
                         
-                        <div class="game-card" onclick="openGame('games/slow-roads', 'https://slow-roads.macbooksuck.xyz/', true)" style="cursor: pointer;">
+                        <a href="https://slow-roads.macbooksuck.xyz/" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Slow Roads</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge new">New</div>
-                        </div>
+                        </a>
                         
-                        <div class="game-card" onclick="openGame('games/unity/Snow-Rider3D', 'https://games.macbooksuck.xyz/games/Snow-Rider3D/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/Snow-Rider3D/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/snow-rider.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title">Snow Rider</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge top-rated">Top rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/snowbattle', 'https://games.macbooksuck.xyz/games/snowbattle/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/snowbattle/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Snowbattle</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/soccer-random')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/soccer-random/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Soccer Random</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/space-company')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/space-company/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Space Company</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/spacegarden')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/spacegarden/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Space Garden</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/stack')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/stack/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Stack</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/station-141', 'https://games.macbooksuck.xyz/games/station-141/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/station-141/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Station 141</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/stick-duel-battle')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/stick-duel-battle/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Stick Duel Battle</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/stickman-hook')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/stickman-hook/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Stickman Hook</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/street-wheelie')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/street-wheelie/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Street Wheelie</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge top-rated">Top rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/subway-surfers', 'https://games.macbooksuck.xyz/games/subway-surfers/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/subway-surfers/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Subway Surfers</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
                         
-                        <div class="game-card" onclick="openGame('games/unity/super-star-car', 'https://games.macbooksuck.xyz/games/super-star-car/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/super-star-car/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Super Star Car</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge developer-rated">Game of the Week</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/super-star-car-2')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/super-star-car-2/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Super Star Car 2</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge not-working">Not working</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/Super%20Tic-Tac-Toe')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/Super%20Tic-Tac-Toe/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Super Tic-Tac-Toe</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/sm64')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/sm64/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Super Mario 64</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/swerve')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/swerve/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Swerve</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
                         
-                        <div class="game-card" onclick="openGame('games/tank-trouble-2')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/tank-trouble-2/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Tank Trouble 2</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/tanuki-sunset', 'https://games.macbooksuck.xyz/games/tanuki-sunset/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/tanuki-sunset/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Tanuki Sunset</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/temple-run-2')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/temple-run-2/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Temple Run 2</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/territorial.html')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/territorial.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">territorial.io</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/thebowlingclub')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/thebowlingclub/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">The Bowling Club</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/thisistheonlylevel')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/thisistheonlylevel/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">This Is The Only Level</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unity/timeshooter3swat', 'https://games.macbooksuck.xyz/games/timeshooter3swat/')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/timeshooter3swat/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/timeshooterswat.png');"></div>
                             <div class="card-content">
                                 <div class="game-title">Time Shooter 3: SWAT</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/twitch-tetris')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/twitch-tetris/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Twitch Tetris</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/unfairmario')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/unfairmario/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Unfair Mario</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/volley-random')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/volley-random/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Volley Random</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/wallsmash')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/wallsmash/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Wall Smash</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/web-farm')" style="cursor: pointer;">
+                        <a href="https://macbooksuck.xyz/games/web-farm/index.html" class="game-card">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/web-farm.jpg');"></div>
                             <div class="card-content">
                                 <div class="game-title"></div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge only-here">Only found here</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/wordle', 'https://macbooksuper.xyz/games/wordle/', true)" style="cursor: pointer;">
+                        <a href="https://macbooksuper.xyz/games/wordle/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Wordle Unlimited</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card" onclick="openGame('games/worldshardestgame')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/worldshardestgame/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Worlds Hardest Game</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge new">New</div>
-                        </div>
+                        </a>
                         
-                        <div class="game-card" onclick="openGame('games/yohoho_io')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/yohoho_io/index.html" class="game-card">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Yohoho.io</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge updated">Developer rated</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card emulator-card" onclick="openGame('games/GBA')" style="cursor: pointer;">
+                        <a href="https://macbooksuck.xyz/games/GBA/index.html" class="game-card emulator-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">GameBoy Adv Emulator</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                        </a>
 
-                        <div class="game-card horror-card emulator-card" 
-                                onclick="openGame('games/hd_fnaf', 'https://fnaf.macbooksuck.xyz/hd_fnaf/index.html', true)" 
-                                style="cursor: pointer; display: none;">
+                        <a href="https://fnaf.macbooksuck.xyz/hd_fnaf/index.html" class="game-card emulator-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">FNAF-Collection</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
-                        </div>
+                       </a>
                         
                         <a href="https://99nights.macbooksuck.xyz/index.html" class="game-card horror-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
@@ -1674,23 +1657,23 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <div class="badge hot">Horror</div>
                         </a>
 
-                        <div class="game-card horror-card" onclick="openGame('games/backrooms-2d')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/backrooms-2d/index.html" class="game-card horror-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Backrooms</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Horror</div>
-                        </div>
+                        </a>
 
-                        <div class="game-card horror-card" onclick="openGame('games/burger-and-frights')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/burger-and-frights/index.html" class="game-card horror-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Burger And Frights</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Horror</div>
-                        </div>
+                        </a>
 
                         <a href="https://macbooksuper.xyz/games/dante/index.html" class="game-card horror-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
@@ -1701,14 +1684,14 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <div class="badge hot">Horror</div>
                         </a>
 
-                        <div class="game-card horror-card" onclick="openGame('games/santy-is-home')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/santy-is-home/index.html" class="game-card horror-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Santy Is Home</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge hot">Horror</div>
-                        </div>
+                        </a>
 
                         <a href="https://99nights.macbooksuck.xyz/" class="game-card new-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
@@ -1720,14 +1703,14 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                           </a>
 
 
-                        <div class="game-card new-card" onclick="openGame('games/block-blast')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/block-blast/" class="game-card new-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Block Blast</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge new">New</div>
-                        </div>
+                        </a>
 
                         <a href="https://billards.macbooksuck.xyz/" class="game-card new-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
@@ -1738,14 +1721,14 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <div class="badge new">New</div>
                         </a>
 
-                        <div class="game-card new-card" onclick="openGame('games/bit-planes-2')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/bit-planes-2" class="game-card new-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">bitplanes 2 player</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge new">New</div>
-                          </div>
+                          </a>
 
                         <a href="https://riddle.macbooksuck.xyz/Learn-to-fly/1/" class="game-card new-card" style="display: none;">
                             <div class="card-background has-image" style="background-image: url('assets/img/game-previews/ltf.png');"></div>
@@ -1828,14 +1811,14 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
                             <div class="badge new">New</div>
                         </a>
 
-                        <div class="game-card new-card" onclick="openGame('games/worldshardestgame')" style="cursor: pointer;">
+                        <a href="https://games.macbooksuck.xyz/games/worldshardestgame/index.html" class="game-card new-card" style="display: none;">
                             <div class="card-background blue-purple"></div>
                             <div class="card-content">
                                 <div class="game-title">Worlds Hardest Game</div>
                                 <div class="game-subtitle">Click to play</div>
                             </div>
                             <div class="badge new">New</div>
-                        </div>
+                        </a>
                         
                 </section>
 
@@ -1879,19 +1862,13 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         </div>
     </div>
 
-<div id="game-modal" class="modal-overlay">
+    <div id="game-modal" class="modal-overlay">
     <div class="game-window" id="game-window-box">
         
         <div class="window-bar">
-            <div style="display:flex; gap:15px; align-items:center;">
-                <div id="save-indicator" class="save-status">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                    Cloud Save Active
-                </div>
-                
-                <a id="old-link-btn" href="#" target="_blank" style="display:none; color:#ff6b35; font-size:0.8rem; text-decoration:none; border:1px solid #ff6b35; padding:4px 8px; border-radius:4px;">
-                    <i class="fa-solid fa-triangle-exclamation"></i> Restore Old Saves
-                </a>
+            <div id="save-indicator" class="save-status">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                Cloud Save Active
             </div>
             
             <div class="window-controls">
@@ -1905,317 +1882,87 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         </div>
 
         <div class="iframe-container">
-            <iframe id="game-frame" src="" allowfullscreen="true" scrolling="no"></iframe>
+            <iframe id="game-frame" src="" allowfullscreen></iframe>
         </div>
     </div>
 </div>
-
-<div id="auth-modal" class="modal-overlay">
-    <div class="game-window" style="max-width: 400px; height: auto; padding: 25px; align-items: center; justify-content: center; text-align: center; border: 1px solid #444;">
-        <h2 style="margin-bottom: 20px; color: white;">Player Login</h2>
-        
-        <input type="text" id="auth-input" placeholder="Username" class="search-input" style="margin-bottom: 10px; width: 100%;">
-        <input type="password" id="auth-password" placeholder="Password" class="search-input" style="margin-bottom: 20px; width: 100%;">
-        
-        <div id="auth-error" class="error-msg" style="display:none; color:#ff6b6b; margin-bottom:10px;"></div>
-
-        <div style="display: flex; gap: 10px; width: 100%; margin-top:10px;">
-            <button class="login-btn" style="flex: 1;" onclick="handleCustomLogin('login')">Login</button>
-            <button class="login-btn" style="flex: 1; background: var(--cg-purple);" onclick="handleCustomLogin('signup')">Sign Up</button>
-        </div>
-
-        <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 15px; width: 100%;">
-            <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Partner Login</p>
-            
-            <button class="login-btn" id="guahh-login-btn" style="width: 100%; background: #ffffff; color: #000; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
-                <img src="https://raw.githubusercontent.com/guahhinc/kangaroo/main/guahh_white.png" alt="Guahh" style="height: 20px; width: auto; filter: invert(1);"> 
-                <span>Sign in with Guahh</span>
-            </button>
-
-            <button class="login-btn" style="width: 100%; background: #4285F4;" onclick="signInWithGoogle()">
-                <i class="fa-brands fa-google"></i> Sign in with Google
-            </button>
-        </div>
-        
-        <button class="btn-control" style="margin-top: 15px; background: transparent; border: none; color:#888;" onclick="closeAuthModal()">Cancel</button>
-    </div>
-</div>
-        
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-    // --- 1. CONFIGURATION ---
+    // 1. CONFIGURATION
     const supabaseUrl = 'https://ahkqnnvrmpvvwudyjrin.supabase.co';
-    const supabaseKey = 'sb_publishable_Y8MVDWUNrev1SXAZ8-vJhA_ZDmqDwgi'; 
-    const { createClient } = window.supabase;
-    const supabaseClient = createClient(supabaseUrl, supabaseKey);
+    const supabaseKey = 'sb_publishable_Y8MVDWUNrev1SXAZ8-vJhA_ZDmqDwgi'; // PASTE THE FULL KEY HERE
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    // --- 2. ELEMENTS ---
-    const gameModal = document.getElementById('game-modal');
-    const authModal = document.getElementById('auth-modal');
-    const gameFrame = document.getElementById('game-frame');
-    const gameTitle = document.getElementById('game-title-text'); // NEW: Targets the window title
+    // 2. DOM ELEMENTS
+    const modal = document.getElementById('game-modal');
+    const gameWindow = document.getElementById('game-window-box');
+    const iframe = document.getElementById('game-frame');
     const saveIndicator = document.getElementById('save-indicator');
-    const oldLinkBtn = document.getElementById('old-link-btn');
     let currentUser = null;
 
-    // --- 3. AUTHENTICATION ---
-// --- 3. AUTHENTICATION (Fixed: Prevents Red Error) ---
+    // 3. AUTH & INIT
     async function initAuth() {
-        const { data: { user } } = await supabaseClient.auth.getUser();
-        
-        if (user) {
-            console.log("Supabase User Detected:", user.id);
-
-            // A. CHECK BAN STATUS
-            const isBanned = await checkBanStatus(user.id);
-            if (isBanned) {
-                await supabaseClient.auth.signOut(); 
-                return; 
-            }
-
-            // B. SAVE TO PROFILES (With Duplicate Fix)
-            const { error } = await supabaseClient.from('profiles').upsert(
-                { 
-                    user_id: user.id, 
-                    display_name: user.email.split('@')[0], 
-                    last_login: new Date()
-                },
-                { onConflict: 'user_id' }  // This stops the red error box
-            );
-
-            if (error) console.error("Error creating profile:", error);
-
-            // C. UPDATE UI
-            currentUser = user;
-            updateUI();
-            loadGameSave(); 
-        }
-    }
-
-    function openAuthModal() {
-        if(authModal) authModal.classList.add('active');
+        const { data: { user } } = await supabase.auth.getUser();
+        currentUser = user;
+        updateUI();
     }
     
-    function closeAuthModal() {
-        if(authModal) authModal.classList.remove('active');
-    }
-
     function updateUI() {
-        const loginBtn = document.getElementById('main-login-btn');
-        
-        // 1. Update Game Save Status
         if (currentUser) {
-            saveIndicator.innerHTML = '<i class="fa-solid fa-check-circle"></i> Cloud Saves Active';
-            saveIndicator.style.color = "var(--cg-green)";
+            saveIndicator.style.opacity = "1";
+            saveIndicator.innerHTML = '<i class="fa-solid fa-check-circle"></i> This game is saved with the login feature';
         } else {
-            saveIndicator.innerHTML = '<span style="cursor:pointer" onclick="openAuthModal()">⚠️ Not Logged In (Click)</span>';
+            saveIndicator.style.opacity = "1";
             saveIndicator.style.color = "var(--cg-orange)";
-        }
-
-        // 2. Update Header Button
-        if (loginBtn) {
-            if (currentUser) {
-                // Strip the fake email domain for display
-                let name = currentUser.email.replace('@macbooksuck.xyz', '');
-                loginBtn.innerHTML = `<i class="fa-solid fa-user-check"></i> ${name}`;
-                loginBtn.onclick = async () => {
-                    if(confirm("Log out?")) {
-                        await supabaseClient.auth.signOut();
-                        location.reload();
-                    }
-                };
-            } else {
-                loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> Login`;
-                loginBtn.onclick = openAuthModal;
-            }
+            saveIndicator.innerHTML = '<span style="cursor:pointer" onclick="signIn()">⚠️ Not Logged In (Click to Login)</span>';
         }
     }
 
-    // Google Login
-    async function signInWithGoogle() {
-        await supabaseClient.auth.signInWithOAuth({
-            provider: 'google',
-            options: { redirectTo: window.location.href }
-        });
-    }
-
-    // Custom Login
-    async function handleCustomLogin(type) {
-        const input = document.getElementById('auth-input').value.trim();
-        const password = document.getElementById('auth-password').value;
-        const errorBox = document.getElementById('auth-error');
-        if(errorBox) errorBox.style.display = 'none';
-
-        if (!input || !password) return alert("Please enter details");
-
-        // Automatically append fake domain if user just types a name
-        let email = input.includes('@') ? input : `${input}@macbooksuck.xyz`;
-        
-        let result = type === 'signup' 
-            ? await supabaseClient.auth.signUp({ email, password })
-            : await supabaseClient.auth.signInWithPassword({ email, password });
-
-        if (result.error) {
-            if(errorBox) {
-                errorBox.innerText = result.error.message;
-                errorBox.style.display = 'block';
-            } else { alert(result.error.message); }
-        } else {
-            location.reload();
-        }
+    async function signIn() {
+        await supabase.auth.signInWithOAuth({ provider: 'google' });
     }
 
     initAuth();
 
-// Add this inside your Login function (for both Google and Guahh)
-async function updateProfile(user) {
-    const { error } = await supabase
-        .from('profiles')
-        .upsert({ 
-            user_id: user.id, 
-            display_name: user.displayName || user.email,
-            last_login: new Date()
-        });
-}
-
-// Function to check if the current user is banned
-async function checkBanStatus(user) {
-    console.log("Checking ban status for:", user.id);
-    
-    const { data, error } = await supabase
-        .from('banned_users')
-        .select('*')
-        .eq('user_id', user.id)
-        .maybeSingle();
-
-    if (data) {
-        // USER IS BANNED
-        alert(`🚫 YOU ARE BANNED 🚫\nReason: ${data.reason || "Violation of rules."}`);
+    // 4. OPEN/CLOSE GAME
+    // This function is called by your game cards
+    window.openGame = function(gamePath) {
+        modal.classList.add('active'); // Show modal with animation
         
-        // Force Logout immediately
-        if (typeof GuahhAuthAPI !== 'undefined') GuahhAuthAPI.logout();
-        // If using Supabase/Google auth:
-        // await supabase.auth.signOut();
-        
-        location.reload(); // Refresh page to clear state
-        return true; // Return true so we know to stop loading games
-    }
-    return false; // Not banned
-}
+        // Construct URL: games.macbooksuck.xyz + /games/name
+        // Ensure gamePath input is like 'games/bit-planes-2'
+        iframe.src = `https://games.macbooksuck.xyz/${gamePath}/`;
 
-    // --- 4. GAME LOGIC ---
-window.openGame = function(gamePath, secondArg = null, isExternal = false) {
-        console.log("Opening:", gamePath);
-        gameModal.classList.add('active');
-        
-        let name = gamePath.split('/').pop().replace(/-/g, ' ');
-        if(gameTitle) gameTitle.innerText = name.charAt(0).toUpperCase() + name.slice(1);
-
-        let finalUrl;
-
-        // CASE 1: External Game (Dante, Billiards, etc.)
-        // Usage: openGame('my-id', 'https://url.com', true)
-        if (isExternal === true) {
-            finalUrl = secondArg;
-            if(oldLinkBtn) oldLinkBtn.style.display = "none";
-        }
-        // CASE 2: Unity/Migrated Game (Local files + Restore Button)
-        // Usage: openGame('games/bit-planes', 'https://old-site.com')
-        else if (secondArg !== null) {
-            const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
-            finalUrl = `${cleanPath}/index.html`; // Loads LOCALLY
-            
-            if(oldLinkBtn) {
-                oldLinkBtn.style.display = "flex";
-                oldLinkBtn.href = secondArg;
-            }
-        }
-        // CASE 3: Standard Game (Default)
-        // Usage: openGame('games/stickman')
-        else {
-            const cleanPath = gamePath.startsWith('/') ? gamePath.substring(1) : gamePath;
-            finalUrl = `https://games.macbooksuck.xyz/${cleanPath}/index.html`;
-            if(oldLinkBtn) oldLinkBtn.style.display = "none";
-        }
-
-        console.log("Loading URL:", finalUrl);
-        gameFrame.src = finalUrl;
-        
         if (currentUser) {
-            setTimeout(() => loadCloudSave(gamePath), 1500);
+            // Give iframe a moment to load, then check for saves
+            setTimeout(() => loadCloudSave(gamePath), 1000);
         }
     };
 
     window.closeGame = function() {
-        gameModal.classList.remove('active');
-        gameFrame.src = ""; // Stop game audio/logic
-        
-        // FIX: Re-enable scrolling on the main page
-        document.body.style.overflow = ''; 
+        modal.classList.remove('active');
+        setTimeout(() => { iframe.src = ""; }, 300); // Clear source to stop audio
     };
 
     window.toggleFullscreen = function() {
-        const elem = document.getElementById('game-window-box');
         if (!document.fullscreenElement) {
-            elem.requestFullscreen().catch(err => console.log(err));
+            gameWindow.requestFullscreen().catch(err => console.log(err));
         } else {
             document.exitFullscreen();
         }
     };
 
-    // --- 5. SEARCH & FILTERS ---
-    const searchBar = document.getElementById('searchBar');
-    const categoryButtons = document.querySelectorAll('.category-btn');
-    const gameCards = document.querySelectorAll('.game-card');
-
-    // Search Function
-    if(searchBar) {
-        searchBar.addEventListener('keyup', (e) => {
-            const term = e.target.value.toLowerCase();
-            gameCards.forEach(card => {
-                const title = card.querySelector('h3').innerText.toLowerCase();
-                if (title.includes(term)) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        });
-    }
-
-    // Category Filter
-    categoryButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            categoryButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            const filter = btn.innerText.toLowerCase();
-            
-            gameCards.forEach(card => {
-                const tags = card.getAttribute('data-tags') || "";
-                if (filter === 'all' || tags.toLowerCase().includes(filter)) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        });
-    });
-
-    // --- 6. CLOUD SAVE BRIDGE ---
+    // 5. SAVE DATA BRIDGE
     window.addEventListener("message", async (event) => {
-        const allowed = ["macbooksuck.xyz", "localhost", "127.0.0.1"];
-        if (!allowed.some(d => event.origin.includes(d))) return;
+        // Security: Only accept from your games domain
+        if (!event.origin.endsWith("macbooksuck.xyz")) return;
 
-        // SAVE
+        // SAVE TO CLOUD
         if (event.data.type === "GAME_SAVE" && currentUser) {
             console.log("Saving...", event.data.key);
-            const gameId = event.data.gameId || gameFrame.src.split('/').slice(-2)[0];
-
-            await supabaseClient.from('saves').upsert({ 
+            await supabase.from('saves').upsert({ 
                 user_id: currentUser.id, 
-                game_path: gameId, 
+                game_path: event.data.gameId, 
                 save_json: { [event.data.key]: event.data.value }
             }, { onConflict: 'user_id, game_path' });
         }
@@ -2223,30 +1970,23 @@ window.openGame = function(gamePath, secondArg = null, isExternal = false) {
 
     async function loadCloudSave(pathKey) {
         if (!currentUser) return;
-        const searchKey = pathKey.replace('https://', '').replace('games.macbooksuck.xyz/', '').replace(/\//g, '');
         
-        const { data } = await supabaseClient
+        // Find save by matching the folder name (loose match)
+        const { data } = await supabase
             .from('saves')
             .select('save_json')
             .eq('user_id', currentUser.id)
-            .ilike('game_path', `%${searchKey}%`) 
+            .ilike('game_path', `%${pathKey}%`) 
             .maybeSingle();
 
         if (data && data.save_json) {
-            console.log("Loading Save...");
-            gameFrame.contentWindow.postMessage({
+            console.log("Sending Cloud Save to Game...");
+            iframe.contentWindow.postMessage({
                 type: "LOAD_SAVE",
                 payload: data.save_json
             }, "*");
         }
     }
-
-async function signInWithGuahh() {
-    await supabaseClient.auth.signInWithOAuth({
-        provider: 'oidc', // OpenID Connect
-        options: { redirectTo: window.location.href }
-    });
-}
 </script>
     
     <script>
@@ -2273,127 +2013,7 @@ async function signInWithGuahh() {
     });
   });
 });
-
     </script>
-<script>
-// --- MODERATION & LOGIN LOGIC ---
-
-window.addEventListener('load', () => {
-    const checkApi = setInterval(() => {
-        if (typeof GuahhAuthAPI !== 'undefined') {
-            clearInterval(checkApi);
-            initGuahhSystem();
-        }
-    }, 200);
-});
-
-function initGuahhSystem() {
-    console.log("✅ Guahh System Initialized");
-
-    // 1. Bind the Login Button
-    GuahhAuthAPI.bindLoginButton('guahh-login-btn', {
-        serviceName: 'MacBookSuck'
-    });
-
-    // 2. Handle New Login (Button Click)
-    GuahhAuthAPI.onLogin(async (user) => {
-        console.log("User attempting login:", user.userId);
-        
-        // Check Ban
-        const isBanned = await checkBanStatus(user.userId);
-        if (isBanned) return; 
-
-        // Sync Profile to Database
-        await updateProfile(user);
-        
-        updateUIForGuahh(user);
-        closeAuthModal();
-    });
-
-    // 3. Handle Auto-Login (Page Refresh)
-    GuahhAuthAPI.onReady(async () => {
-        const user = GuahhAuthAPI.getCurrentUser();
-        if (user) {
-            console.log("Guahh Auto-Login:", user.userId);
-            
-            // Check Ban
-            const isBanned = await checkBanStatus(user.userId);
-            if (isBanned) return;
-
-            // Sync Profile (Ensures they appear in your table)
-            await updateProfile(user);
-            
-            updateUIForGuahh(user);
-        }
-    });
-}
-
-// --- HELPER FUNCTIONS ---
-
-async function checkBanStatus(idToCheck) {
-    // Note: We use 'supabaseClient' defined in your main script
-    const { data, error } = await supabaseClient
-        .from('banned_users')
-        .select('reason')
-        .eq('user_id', idToCheck)
-        .maybeSingle();
-
-    if (data) {
-        console.error("🚫 USER BANNED:", data.reason);
-        alert(`ACCESS DENIED\n\nYou are banned from this platform.\nReason: ${data.reason}`);
-        GuahhAuthAPI.logout(); 
-        location.reload(); 
-        return true;
-    }
-    return false;
-}
-
-async function updateProfile(user) {
-    // This sends the Guahh ID to your 'profiles' table
-    console.log("Syncing profile for:", user.userId);
-    const { error } = await supabaseClient
-        .from('profiles')
-        .upsert({ 
-            user_id: user.userId, 
-            display_name: user.displayName || "Unknown Player",
-            last_login: new Date()
-        });
-        
-    if (error) console.error("Profile Sync Error:", error);
-    else console.log("Profile Synced Successfully");
-}
-
-function updateUIForGuahh(user) {
-    const loginBtn = document.getElementById('main-login-btn');
-    if (loginBtn) {
-        loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> ${user.displayName}`;
-        
-        // FIXED LOGOUT LOGIC
-        loginBtn.onclick = () => {
-            if(!confirm("Are you sure you want to log out?")) return;
-            
-            // 1. Force Clear Guahh Data
-            localStorage.removeItem('guahh_user'); 
-            
-            // 2. Force Clear Supabase Data
-            supabaseClient.auth.signOut();
-            
-            // 3. Reload Page to reset everything
-            window.location.reload();
-        };
-    }
-    
-    // Set the global currentUser variable so game saves work
-    currentUser = {
-        id: user.userId,
-        email: user.username + "@guahh.net" 
-    };
-    
-    // Refresh the save indicator (Green Cloud Icon)
-    if(typeof updateUI === "function") updateUI();
-}
-</script>
-
 <script>
 document.querySelector('.search-input').addEventListener('input', function(e) {
   const query = e.target.value.toLowerCase();
@@ -2561,8 +2181,6 @@ function toggleSettings() {
     
 <script src="javascript/notification.js"></script>   
 <script src="javascript/banner.js"></script>    
-<script src="https://cdn.jsdelivr.net/gh/guahhinc/fire@main/guahh-auth.js"></script>
-<script src="guahh-auth-api.js"></script>    
-
+    
 </body>
 </html>
