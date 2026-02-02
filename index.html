@@ -2136,6 +2136,25 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         document.body.style.overflow = ''; 
     };
 
+    window.toggleFullscreen = function() {
+        // This targets the container holding your iframe
+        const elem = document.getElementById('game-window-box'); 
+        
+        if (!document.fullscreenElement) {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    };
+
     // --- 5. SEARCH & FILTERS (Kept exactly as you had it) ---
     const searchBar = document.getElementById('searchBar');
     const categoryButtons = document.querySelectorAll('.category-btn');
