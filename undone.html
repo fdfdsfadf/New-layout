@@ -2182,20 +2182,6 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
         });
     });
 
-    // --- 6. CLOUD SAVE BRIDGE ---
-    window.addEventListener("message", async (event) => {
-        const allowed = ["macbooksuck.xyz", "localhost", "127.0.0.1"];
-        if (!allowed.some(d => event.origin.includes(d))) return;
-
-        if (event.data.type === "GAME_SAVE" && currentUser && supabaseClient) {
-            await supabaseClient.from('saves').upsert({ 
-                user_id: currentUser.id, 
-                game_id: event.data.gameId, 
-                save_data: { [event.data.key]: event.data.value } 
-            }, { onConflict: 'user_id, game_id' });
-        }
-    });
-
     async function loadCloudSave(gamePath) {
         if (!currentUser || !supabaseClient) return;
         const { data } = await supabaseClient.from('saves')
@@ -2242,6 +2228,38 @@ document.getElementById("musicToggle").addEventListener("click", function(e) {
 });
 
     </script>
+
+<script>
+window.cloudSave = async function (gameId, saveData) {
+  if (!currentUser || !supabaseClient) return;
+
+  const { error } = await supabaseClient
+    .from("saves")
+    .upsert({
+      user_id: currentUser.id,
+      game_id: gameId,
+      save_data: saveData
+    }, { onConflict: 'user_id, game_id' });
+
+  if (error) console.error("[CloudSave]", error);
+};
+
+window.cloudLoad = async function (gameId) {
+  if (!currentUser || !supabaseClient) return null;
+
+  const { data, error } = await supabaseClient
+    .from("saves")
+    .select("save_data")
+    .eq("user_id", currentUser.id)
+    .eq("game_id", gameId)
+    .single();
+
+  if (error) return null;
+  return data.save_data;
+};
+</script>
+
+
 <script>
 // --- MODERATION & LOGIN LOGIC ---
 
