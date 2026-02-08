@@ -79,6 +79,31 @@ html, body{
 
 
 
+<script>
+(function () {
+  const GAME_ID = location.pathname;
+  const SAVE_KEY = "engine_save_v1";
+
+  async function loadSave() {
+    if (!window.parent?.cloudLoad) return;
+    const save = await window.parent.cloudLoad(GAME_ID);
+    if (!save) return;
+
+    if (typeof FS !== "undefined") {
+      FS.syncfs(true, () =>
+        console.log("[CloudSave] Engine save restored")
+      );
+    }
+  }
+
+  window.addEventListener("beforeunload", () => {
+    if (!window.parent?.cloudSave) return;
+    window.parent.cloudSave(GAME_ID, { [SAVE_KEY]: true });
+  });
+
+  loadSave();
+})();
+</script>
 </body>
 
 </html>
